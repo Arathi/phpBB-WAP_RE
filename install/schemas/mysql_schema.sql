@@ -375,6 +375,9 @@ CREATE TABLE phpbb_topics (
    topic_closed mediumint(8) not null DEFAULT '0',
    topic_color varchar(6),
    topic_special tinyint(8) default '0',
+   topic_stick int(1) default '0',
+   topic_highlight int(1) default '0',
+   topic_qianglou int(1) default '0',
    PRIMARY KEY (topic_id),
    KEY forum_id (forum_id),
    KEY topic_moved_id (topic_moved_id),
@@ -477,10 +480,13 @@ CREATE TABLE phpbb_users (
    user_style mediumint(8) DEFAULT '1',
    user_web_style mediumint(8) DEFAULT '1',
    invite_num int(5) NOT NULL default '0',
+   user_highlight int(5) NOT NULL default '0',
+   user_stick int(5) NOT NULL default '0',
+   user_qianglou int(5) NOT NULL default '0',
    PRIMARY KEY (user_id),
    KEY user_session_time (user_session_time)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
+# 最后的user_highlight user_stick  user_qianglou是道具功能sql
 # 表：phpbb_vote_desc
 # 描述：投票选项、问题
 CREATE TABLE phpbb_vote_desc (

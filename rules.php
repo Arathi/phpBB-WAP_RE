@@ -468,12 +468,62 @@ switch( $mode )
 		}
 		elseif ( $action == 'bbcode' )
 		{
-			$catsides = 'BB-code';
-			$print = '[b]粗体文字[/b] - <b>粗体文字</b><br/>[i]倾斜文字[/i] - <i>倾斜文字</i><br/>[u]文字下划线[/u] - <u>文字下划线</u></div><div class="row1">[color=颜色]我是一段文字[/color] - 我是一段文字<br/>颜色:<br/>red - 红色<br/>blue - 蓝色<br/>yellow - 黄色<br/>green - 绿色<br/>brown - 棕色<br/>gray - 灰色<br/>lightgreen - 浅绿色<br/>lime - 绿黄色<br/>purple - 紫色<br/>olive - 橄榄色<br/>navy - 深蓝色<br/>silver - 银色<br/>pink - 粉红色<br/>gold - 金色<br/>orange - 橙色</div><div class="row1">[url=http://域名]说明[/url] - 用户超链接</div><div class="row1">设置字体大小：[size=数字]我是一段文字[/size]';
+			$catsides = 'UBB';
+			$print = '
+[img]地址[/img] </br>
+[b]粗体文字[/b]  </br>
+[i]倾斜文字[/i]  </br>
+[u]文字下划线[/u]</br>
+[color=颜色]我是一段文字[/color]</br>
+[url=http://域名]说明[/url] - 用户超链接 </br>
+设置字体大小：[size=数字]我是一段文字[/size] </br>
+[date] = 当前年月日 </br>
+[now] = 系统时间 </br>
+[time] = 当前时间 </br>
+[day] = 天 </br>
+[HOUR] = 小时（24小时制） </br>
+[hour] = 小时（12小时制) </br>
+[minute] = 分 </br>
+[second] = 秒 </br>
+[TAB] = 两个空格</br>
+[tab] = 一个空格 </br>
+[br/] = 换行 </br>
+[hr] = 水平线</br>
+[qq]QQ号码[/qq] = 显示QQ在线状态，UBB不区分大小写 </br>
+[week] = 显示星期几，例如：一 </br>
+[hello] = 时间问候语，例如：晚上好 
+[username] = 显示用户名 </br>
+[userid] = 显示用户ID </br>
+[email] = 显示用户电子邮件 </br>
+[posts] = 显示用户帖子数量 </br>
+[usertime] = 显示用户时间 </br>
+[money] = 显示用户积分 </br>
+[login]登录可见！[/login] </br>
+[total_attach] = 统计附件数量 </br>
+[new_userlink] = 新用户个人空间链接,配合[new_user]使用 </br>
+[new_user] = 新用户名称 </br>
+[new_userid] = 新会员的用户ID </br>
+[page_title] = 显示网页标题 </br>
+[sitename] = 显示本站名称 </br>
+[sitedesc] = 显示本站的描述 </br>
+[U_INDEX] = 首页 </br>
+[U_BBS] = 论坛 </br>
+[U_PROFILE] = 个人资料</br>
+[U_PM] = 收信箱 </br>
+[U_BOOKMARKS] = 书签 </br>
+[U_VIEWONLINE] = 在线状态 </br>
+[U_RULES] = 规则页面 </br>
+[U_SHOP] = 商店 </br>
+[U_CHAT] = 聊天室 </br>
+[div class=风格属性]文字[/div] = <div class="风格属性">文字</div> </br>
+[SITE=路径]说明[/SITE]= 站内链接</br>
+			
+			
+			</div><div class="row1">[color=颜色]我是一段文字[/color] - 我是一段文字<br/>颜色:<br/>red - 红色<br/>blue - 蓝色<br/>yellow - 黄色<br/>green - 绿色<br/>brown - 棕色<br/>gray - 灰色<br/>lightgreen - 浅绿色<br/>lime - 绿黄色<br/>purple - 紫色<br/>olive - 橄榄色<br/>navy - 深蓝色<br/>silver - 银色<br/>pink - 粉红色<br/>gold - 金色<br/>orange - 橙色</div><div class="row1">[url=http://域名]说明[/url] - 用户超链接</div><div class="row1">设置字体大小：[size=数字]我是一段文字[/size]';
 		}
 		else
 		{
-			$catsides = 'FAQ 列表';
+			$catsides = '帮助 列表';
 			$print = '- <a href="' . append_sid("rules.$phpEx?mode=faq&amp;act=autologin") . '">自动登录</a><br/>- <a href="' . append_sid("rules.$phpEx?mode=faq&amp;act=translit") . '">翻译</a><br/>- <a href="' . append_sid("rules.$phpEx?mode=faq&amp;act=bbcode") . '">BBcode</a><br/>- <a href="' . append_sid("smiles.$phpEx") . '">表情</a>';
 		}
 
@@ -571,7 +621,7 @@ switch( $mode )
 		  	}
 		}
 
-		$o_rules .= '- <a href="' . append_sid("rules.$phpEx?mode=faq") . '">FAQ 列表</a>';
+		$o_rules .= '- <a href="' . append_sid("rules.$phpEx?mode=faq") . '">帮助列表</a>';
 
 		$page_title = $lang['Rules'];
 		include($phpbb_root_path.'includes/page_header.'.$phpEx);

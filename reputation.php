@@ -242,7 +242,7 @@ elseif ($mode == 'warning' || $mode == 'ban')
 		}
 
 		$topic_id = intval($user_post_data['topic_id']);
-		$back_url .= "<br /><br /><a href=\"posting.$phpEx?mode=delete&amp;sid=" . $userdata['session_id'] . '&amp;' . POST_POST_URL . "=$post_id\">Удалить сообщение</a><br /><a href=\"modcp.$phpEx?mode=lock&amp;sid=" . $userdata['session_id'] . '&amp;' . POST_TOPIC_URL . "=$topic_id\">" . $lang['Lock_topic'] . '</a>';
+		$back_url .= "<br /><br /><a href=\"posting.$phpEx?mode=delete&amp;sid=" . $userdata['session_id'] . '&amp;' . POST_POST_URL . "=$post_id\">取消该用户的警告</a><br /><a href=\"modcp.$phpEx?mode=lock&amp;sid=" . $userdata['session_id'] . '&amp;' . POST_TOPIC_URL . "=$topic_id\">" . $lang['Lock_topic'] . '</a>';
 	}
 	$poster = $user_post_data['username'];
 

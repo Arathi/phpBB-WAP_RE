@@ -317,7 +317,16 @@ if( $total_topics )
 		// 帖子标题颜色
 		if ( $topic_rowset[$i]['topic_color'] )
 		{
-		$topic_color = '#'.$topic_rowset[$i]['topic_color'];
+			if($topic_rowset[$i]['topic_highlight']!=HIGHLIGHT){
+				$topic_color = '#'.$topic_rowset[$i]['topic_color'];
+			}else{
+				$time=time();
+				if((($board_config['highlight_time']+$topic_rowset[$i]['topic_time'])<$time)&&($board_config['daoju_swtich']!=0)){
+					$topic_color = '';
+				}else{
+					$topic_color = '#'.$topic_rowset[$i]['topic_color'];
+				}
+			}
 		}
 		else
 		{
@@ -341,33 +350,28 @@ if( $total_topics )
 		$replies = $topic_rowset[$i]['topic_replies'];
 		$topic_type = $topic_rowset[$i]['topic_type'];
 
-		if( $topic_type == POST_ANNOUNCE )
-		{
-			if ( file_exists($phpbb_root_path . 'images/icons/announcement.png') )
-			{
-				$topic_type = '<img src="' . $phpbb_root_path . 'images/icons/announcement.png"/>';
+		if(($topic_rowset[$i]['topic_stick']==STICK)&&($board_config['daoju_swtich']!=0)){
+			if(($board_config['stick_time']+$topic_rowset[$i]['topic_time'])>$time){
+				$topic_type = $lang['Topic_Sticky'];
+				//set_stick($topic_id);
+			}else{
+				$topic_type = '';
+				//cancel_stick($topic_id);
 			}
-			else
+		}else{
+			if( $topic_type == POST_ANNOUNCE )
 			{
 				$topic_type = '';
 			}
-		}
-		else if( $topic_type == POST_STICKY )
-		{
-			if ( file_exists($phpbb_root_path . 'images/icons/sticky.png') )
-			{
-				$topic_type = '<img src="' . $phpbb_root_path . 'images/icons/sticky.png"/>';
-			}
-			else
+			else if( $topic_type == POST_STICKY )
 			{
 				$topic_type = $lang['Topic_Sticky'];
 			}
+			else
+			{
+				$topic_type = '';		
+			}
 		}
-		else
-		{
-			$topic_type = '';		
-		}
-
 		if( $topic_rowset[$i]['topic_vote'] )
 		{
 			if ( file_exists($phpbb_root_path . 'images/icons/poll.png') )
@@ -452,7 +456,7 @@ if( $total_topics )
 		}
 		
 		$view_topic_url = append_sid("viewtopic.$phpEx?" . POST_TOPIC_URL . "=$topic_id");
-		$last_post_author = ( $topic_rowset[$i]['id2'] == ANONYMOUS ) ? ( ($topic_rowset[$i]['post_username2'] != '' ) ? $topic_rowset[$i]['post_username2'] . ' ' : $lang['Guest'] . ' ' ) :  $topic_rowset[$i]['user2']  ;
+		$poster = $topic_rowset[$i]['username'] ;
 		$last_post_url = '<a href="' . append_sid("viewtopic.$phpEx?"  . POST_POST_URL . '=' . $topic_rowset[$i]['topic_last_post_id']) . '#' . $topic_rowset[$i]['topic_last_post_id'] . '">' . $lang['View_latest_post'] . '</a>';
 		
 		$nomer_posta = $i + $start + 1;
@@ -464,7 +468,7 @@ if( $total_topics )
 			'TOPIC_TYPE' 			=> $topic_type,
 			'NOMER_POSTA' 			=> $nomer_posta,
 			'REPLIES' 				=> $replies,
-			'LAST_POST_AUTHOR' 		=> $last_post_author, 
+			'LAST_POST_AUTHOR' 		=> $poster, 
 			'LAST_POST_IMG' 		=> $last_post_url, 
 			'L_TOPIC_FOLDER_ALT' 	=> $folder_alt, 
 			'U_TOPIC_COLOR' 		=> $u_topic_color,

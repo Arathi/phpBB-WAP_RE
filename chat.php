@@ -109,6 +109,8 @@ if ( (isset($HTTP_POST_VARS['submit']) && isset($HTTP_POST_VARS['message'])) && 
 		require_once($phpbb_root_path . 'includes/functions_post.'.$phpEx);
 		$bbcode_uid = ( $bbcode_on ) ? make_bbcode_uid() : '';
 		$message = prepare_message(trim($message), $html_on, $bbcode_on, $smilies_on, $bbcode_uid);
+		$message = phpbb_message_at($message);//@mod
+		$message = preg_replace("!(@|＠)([\\x{4e00}-\\x{9fa5}A-Za-z0-9_\\-]{1,})(\x20|&nbsp;|<|\xC2\xA0|\r|\n|\x03|\t|,|\\?|\\!|:|;|，|。|？|！|：|；|、|…|$)!ue","'\\1<a href=\"./profile.php?mode=viewprofile&amp;u=2&user='.urlencode('\\2').'\">\\2</a>\\3'",$message);
 		$sql = "INSERT INTO " . SHOUTBOX_TABLE. " (shout_text, shout_session_time, shout_user_id, shout_ip, shout_username, shout_bbcode_uid,enable_bbcode,enable_html,enable_smilies) 
 				VALUES ('$message', '".time()."', '".$userdata['user_id']."', '$user_ip', '".phpbb_clean_username($userdata['username'])."', '".$bbcode_uid."',1,0,1)";
 		if (!$result = $db->sql_query($sql)) 

@@ -597,6 +597,36 @@ else if ( $submit || $confirm )
 	}
 
 	$translit = ( isset($HTTP_POST_VARS['translit']) ) ? TRUE : FALSE; 
+		if($userdata['user_stick']>0){
+		   if($HTTP_POST_VARS['stick']){
+$stick=1;
+}else{
+$stick=0;
+}
+	}else{
+	    $stick = 0;
+	}
+		if($stick==1){
+			use_daoju('stick',$userdata['user_id']);
+		}
+	if($userdata['user_highlight']>0){
+		if($HTTP_POST_VARS['highlight']){
+$highlight=1;
+}else{
+$highlight=0;
+}
+	}else{
+		$highlight = 0;
+	}
+		if($highlight==1){
+		use_daoju('highlight',$userdata['user_id']);
+		}
+	if($highlight==HIGHLIGHT){
+	  $prop_color = ( isset($HTTP_POST_VARS['prop_color']) ) ? $HTTP_POST_VARS['prop_color'] : '0';
+	}else{
+	  $prop_color = '0';
+	}
+
 
 	switch ( $mode )
 	{
@@ -625,7 +655,8 @@ else if ( $submit || $confirm )
 			if ( $error_msg == '' )
 			{
 				$topic_type = ( $topic_type != $post_data['topic_type'] && (!$is_auth['auth_sticky'] && !$is_auth['auth_announce'] && !$is_auth_mod) ) ? $post_data['topic_type'] : $topic_type;
-				submit_post($mode, $post_data, $return_message, $return_meta, $forum_id, $topic_id, $post_id, $poll_id, $topic_type, $bbcode_on, $html_on, $smilies_on, $attach_sig, $bbcode_uid, str_replace("\'", "''", $username), str_replace("\'", "''", $subject), str_replace("\'", "''", $message), str_replace("\'", "''", $poll_title), $poll_options, $poll_length);
+				$message = phpbb_message_at($message);//@ Mod
+				submit_post($mode, $post_data, $return_message, $return_meta, $forum_id, $topic_id, $post_id, $poll_id, $topic_type, $bbcode_on, $html_on, $smilies_on, $attach_sig, $bbcode_uid, str_replace("\'", "''", $username), str_replace("\'", "''", $subject), str_replace("\'", "''", $message), str_replace("\'", "''", $poll_title), $poll_options, $poll_length,$prop_color,$stick,$highlight);
 			}
 			break;
 
@@ -927,6 +958,25 @@ switch( $mode )
 		$hidden_form_fields .= '<input type="hidden" name="' . POST_POST_URL . '" value="' . $post_id . '" />';
 		break;
 }
+if(($mode=="newtopic")&&($board_config['daoju_swtich']!=0)){
+	if($userdata['user_stick']>0){
+		$prop='<input type="checkbox" name="stick" />道具-置顶卡(剩余'.$userdata['user_stick'].'张)<br/>';
+	}else{
+		$prop='';
+	}
+	if($userdata['user_highlight']>0){
+		$prop.='<input type="checkbox" name="highlight" />道具-高亮卡(剩余'.$userdata['user_highlight'].'张)<br/>
+			高亮颜色(16进制)<input type="text" name="prop_color" /><br/>';
+	}else{
+		$prop.='';
+	}
+}else{
+	if(($userdata['user_qianglou']>0)&&($board_config['daoju_swtich'])){
+		$prop='<input type="checkbox" name="qianglou" /> 道具-抢沙发(还剩'.$userdata['user_qianglou'].'张)<br/>';
+	}else{
+		$prop='';
+	}
+}
 
 include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 
@@ -1045,7 +1095,8 @@ $template->assign_vars(array(
 	'S_TYPE_TOGGLE' 		=> $topic_type_toggle, 
 	'S_TOPIC_ID' 			=> $topic_id, 
 	'S_POST_ACTION' 		=> append_sid("posting.$phpEx"),
-	'S_HIDDEN_FORM_FIELDS' 	=> $hidden_form_fields)
+	'S_HIDDEN_FORM_FIELDS' 	=> $hidden_form_fields,
+	'PROP' => $prop)
 );
 
 if( ( $mode == 'newtopic' || ( $mode == 'editpost' && $post_data['edit_poll']) ) && $is_auth['auth_pollcreate'] )

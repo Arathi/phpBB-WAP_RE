@@ -151,7 +151,13 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_guests_gb', 
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('gb_posts', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('gb_quick', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('prune_shouts', '0');
-
+#-- 下面的是道具功能使用的有效时间和价格
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('daoju_swtich', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('highlight_time', '360000');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('stick_time', '36000');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('stick_price', '100');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('highlight_price', '100');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('qianglou_price', '100');
 #-- 奖
 INSERT INTO phpbb_medal_cat VALUES ('1', '测试奖', '10');
 

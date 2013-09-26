@@ -269,7 +269,18 @@ switch( $id )
 			$opisanie .= '<a href="' . $back_shop_index . '">' . $lang['Shop_Pay_Money_To_Shop'] . '</a>|<a href="' . $back_index . '">' . $lang['Shop_Pay_Money_To_Index'] . '</a>';
 		}
 	break;
-	
+		case '10':
+		$tovar = $lang['buy_daoju'];
+		if(($board_config['stick_price']<$userdata['user_points'])||($$board_config['highlight_price']<$userdata['user_points'])){
+			$opisanie .= sprintf($lang['buy_daoju'],
+			$userdata['user_points']);
+			$opisanie .= '<a href="' . append_sid("{$phpbb_root_path}profile.$phpEx?mode=money&amp;daoju") . '"><br/>' . $lang['Yes']  . '</a>|<a href="' . $back_shop_index . '">' . $lang['No'] . '</a>';
+		}else{
+			$opisanie .="对不起，你的".$points_name."不足";
+		}
+
+		break;
+
 	default:
 		$tovar = $lang['Welcome_To_Shop'];
 		
@@ -291,7 +302,9 @@ switch( $id )
 		if ( $board_config['pay_money'] )
 		{
 			$opisanie .= '<br/>- <a href="'.append_sid("{$phpbb_root_path}mods/shop/index.$phpEx?id=9").'">' . $lang['Shop_Pay_Money'] . '</a>';
+
 		}
+		$opisanie .= '- <a href="'.append_sid("{$phpbb_root_path}mods/shop/index.$phpEx?id=10").'">' . $lang['buy_daoju'] . '</a><br />';
 	break;
 }
 

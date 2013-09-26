@@ -100,6 +100,48 @@ if (isset($HTTP_GET_VARS['nick']))
 		include($phpbb_root_path . 'includes/page_tail.'.$phpEx);
 	}
 }
+// 购买道具
+elseif (isset($HTTP_GET_VARS['daoju']))
+{
+	// 检查用户积分是否大于购买道具的积分
+	if ( ( $userdata['user_points'] > $board_config['stick_price'] ) ||( $userdata['user_points'] > $board_config['highlight_price'] ) )
+	{
+			// 检查是否提交和用户名是否为空
+		if ( isset($HTTP_POST_VARS['submit']) && !empty($HTTP_POST_VARS['buy_num']) ){
+			$daoju_type = ( isset($HTTP_POST_VARS['type']) ) ? $HTTP_POST_VARS['type'] : '0';
+			$buy_num = ( isset($HTTP_POST_VARS['buy_num']) ) ? $HTTP_POST_VARS['buy_num'] : '0';
+//			if(eregi("^[0-9]*$",$buy_num)){
+//				message_die(GENERAL_ERROR, '输入不合法,请输入数字');
+
+				buy_daoju($daoju_type,$buy_num,$userdata['user_id']);
+				message_die(GENERAL_ERROR, '购买成功<br/>');
+		}
+	}
+	include($phpbb_root_path . 'includes/page_header.'.$phpEx);
+		$page_title = $lang['buy_daoju'];
+		$template->set_filenames(array(
+			'body' => 'mods/shop_daoju.tpl')
+		);
+		$price="道具价格:<br/>置顶卡 (".$board_config['stick_price'].$point_name."/张)<br/>高亮卡 (".$board_config['highlight_price'].$point_name."/张)<br/>抢楼卡 (".$board_config['qianglou_price'].$point_name."/张)";
+
+		$template->assign_vars(array(
+			'L_SHOP_ACTION' 	=> $lang['buy_daoju'],
+			'SHOP_ACTION' 		=> $lang['enter_buy_num'],
+			'SHOP_ACTION_DB' 	=> 'buy_num',
+			'SHOP_ACTION_MAX' 	=> '25',
+			'SHOP_MONEY' 		=> $board_config['stick_price'],
+			'SHOP_POINT_NAME' 	=> $point_name,
+			'SHOP_DAOJU_TYPE'   => $lang['daoju_type'],
+			'S_SHOP_ACTION' 	=> append_sid("profile.$phpEx?mode=money&amp;daoju"),
+			'PRICE'             => $price,
+			'USER_POINTS'       => $userdata['user_points'])
+		);
+
+		$template->pparse('body');
+
+		include($phpbb_root_path . 'includes/page_tail.'.$phpEx);
+	}
+
 // 更改用户名颜色
 elseif (isset($HTTP_GET_VARS['color'])) 
 {

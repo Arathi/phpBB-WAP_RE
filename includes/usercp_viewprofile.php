@@ -13,12 +13,21 @@ if ( !defined('IN_PHPBB') )
 	die("Hacking attempt");
 	exit;
 }
-
+if ( isset($HTTP_GET_VARS[POST_USERNAME_URL]))
+{
+if ( empty($HTTP_GET_VARS[POST_USERNAME_URL]))
+{
+$HTTP_GET_VARS[POST_USERNAME_URL] = NULL;
+}
+}else
+{
+$HTTP_GET_VARS[POST_USERNAME_URL] = NULL;
+}
 if ( empty($HTTP_GET_VARS[POST_USERS_URL]) || $HTTP_GET_VARS[POST_USERS_URL] == ANONYMOUS )
 {
 	message_die(GENERAL_MESSAGE, $lang['No_user_id_specified']);
 }
-$profiledata = get_userdata($HTTP_GET_VARS[POST_USERS_URL]);
+$profiledata = get_userdata($HTTP_GET_VARS[POST_USERS_URL],urldecode($postuser=$HTTP_GET_VARS[POST_USERNAME_URL]));
 
 if (!$profiledata)
 {

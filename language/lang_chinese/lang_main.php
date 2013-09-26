@@ -299,10 +299,10 @@ $lang['Reached_on_error'] = '指定打开的页面错误';
 $lang['Display_topics'] = '查看主题范围';
 $lang['All_Topics'] = '全部主题';
 
-$lang['Topic_Announcement'] = '*';
-$lang['Topic_Sticky'] = '!';
+$lang['Topic_Announcement'] = '<font color=red>公告</font>';
+$lang['Topic_Sticky'] = '<font color=red>置顶</font>';
 $lang['Topic_Moved'] = '^';
-$lang['Topic_Poll'] = '[%]';
+$lang['Topic_Poll'] = '[投]';
 
 $lang['Mark_all_topics'] = '标记所有主题为已读';
 $lang['Topics_marked_read'] = '这个论坛的所有主题已经标记已读';
@@ -1428,5 +1428,10 @@ $lang['newest_first_explain'] = '把新的帖子回复显示在前面';
 
 // 银行
 $lang['bank'] = '虚拟银行';
+
+//道具
+$lang['buy_daoju'] = '购买道具';
+$lang['enter_buy_num'] = '请输入购买数量';
+$lang['daoju_type'] = '选择道具种类';
 
 ?>

@@ -40,7 +40,7 @@ if ( isset($_POST['agree']) )
 	?>
 	</form>
 	</div>
-	<div class="copy">Powered by <a href="http://phpbb-wap.com/">phpBB-WAP v4.0</div>
+	<div class="copy">Powered by <a href="http://phpbb-wap.com/">phpBB-WAP v4.1修订版</div>
 	</div>
 	</body>
 	</html>
@@ -761,6 +761,7 @@ else
 					<textarea rows="20" style="width:99%;">1、本软件为自由软件，您可以遵守 GPL 协议的前提下自由使用！
 2、本人（即 “爱疯的云” 、中文phpBB-WAP） 没有义务解答您的的问题！
 3、如果您发现程序的 bug，您可以将 bug 以帖子的形式发表到 http://zisuw.com/viewforum.php?f=32 进行交流！
+4、本程序由dilu修改，发布为4.1版本，本人不持有版权，所以版权纠纷与本人无关！
 					</textarea>
 				</div>
 				<div class="row1">我 <input type="submit" name="agree" value="同意"/> 并遵守以上协议并安装！</div>

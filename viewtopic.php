@@ -1336,6 +1336,21 @@ for($i = 0; $i < $total_posts; $i++)
 	} else {
 			$icon = '';
 	}
+	if(preg_match_all("/(\[grade=.*[0-9]{1}\]).*(\[\/grade\])/",$message,$arr)){ 
+$ubb_grade_1=str_replace("[grade=","",$arr[1][0]); 
+    $ubb_grade_2=str_replace("]","",$ubb_grade_1); 
+$ubb_grade=(int)$ubb_grade_2; 
+      if ( ( $userdata['user_rank']<$ubb_grade ) && ($userdata['user_level']!=ADMIN)){ 
+   
+  $message=preg_replace("/(\[grade=.*\]).*(\[\/grade\])/","<font color=red>亲爱的".$userdata['username'].",以下内容需要等级达到".$ubb_grade."才能查看.</font>",$message); 
+ }else{ 
+ $message=str_replace("[grade=","",$message); 
+ $message=str_replace("[/grade]","",$message); 
+ $message=str_replace($ubb_grade,"",$message); 
+ $message=str_replace("]","",$message); 
+  
+ } 
+} 
 
 	$row_color = '';
 	
@@ -1417,7 +1432,8 @@ for($i = 0; $i < $total_posts; $i++)
 			$br = '<br />';
 			$avatar_img = $poster_posts = $special_select = $special = '';
 	}
-
+//@ Mod
+$message = preg_replace("!(@|＠)([\\x{4e00}-\\x{9fa5}A-Za-z0-9_\\-]{1,})(\x20|&nbsp;|<|\xC2\xA0|\r|\n|\x03|\t|,|\\?|\\!|:|;|，|。|？|！|：|；|、|…|$)!ue","'\\1<a href=\"./profile.php?mode=viewprofile&amp;u=2&user='.urlencode('\\2').'\">\\2</a>\\3'",$message);
 	$template->assign_block_vars('postrow', array(
 		'POSTER_ID'		=> $poster_id,
 		'AVATAR_IMG' 	=> $avatar_img,

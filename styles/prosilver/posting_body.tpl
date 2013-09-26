@@ -87,6 +87,7 @@ function bbcode(Tag) {
 <div class="row1">{S_TYPE_TOGGLE}</div>
 <!-- END switch_type_toggle -->
 <div class="row1">
+{PROP}
 <input type="checkbox" name="translit" /> 自动翻译<br/>
 <!-- BEGIN switch_notify_checkbox -->
 <input type="checkbox" name="notify" {S_NOTIFY_CHECKED} /> {L_NOTIFY_ON_REPLY}<br/>
