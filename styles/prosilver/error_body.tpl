@@ -1,0 +1,1 @@
+<span style="color: red">{ERROR_MESSAGE}</span><br/>

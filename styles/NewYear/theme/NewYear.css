@@ -1,0 +1,170 @@
+@charset "utf-8";
+/******************************
+* 	名称：NewYear.css
+*	作者：爱疯的云
+*	简体中文：爱疯的云
+*******************************/
+
+body {
+	background-color:#C50F0B;	
+	background-image: url(../images/bg.jpg);
+	background-repeat:no-repeat;
+	background-position:center;
+	background-attachment:fixed;
+	color: #ffffff;
+	font-family: Lucida Grande, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	margin: auto;
+	max-width: 320px;
+}
+	
+/**
+* a 标签的一些属性
+**/
+a:link,a:active,a:visited { 
+	color: #ffffff;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none; 
+	color: #0b0292; 
+	position: relative;
+	top: 1px; 
+}
+a.cattitle { 
+	color: #FFEA05; 
+	text-decoration: none;
+}
+a.buttom { 
+	background:#930000;
+	border:1px solid #0e82bb;
+	color:#e4f6ff;
+	padding: 0px 2px 0px;
+	border-radius:5px; 
+	line-height: 1.5; 
+}
+	
+/**
+* wrap 框挂
+**/
+.wrap {
+	background-color:#f20f0a;
+	width:320px; 
+	margin:0 auto; 
+	border-radius:6px;
+}
+
+/**
+* cat 标签
+**/
+div.cat {
+	background:#A50000 url("./../images/cat.gif") repeat-x 0 0;
+	color:#FFF;
+	margin-bottom:4px;
+	padding:5px 
+}
+
+/**
+* 导航栏
+**/
+.navbar {
+	background-color:#FF6100;
+	margin-bottom:4px;
+	padding:5px
+}
+
+/**
+* 标题栏
+**/
+.catSides {
+	background:#A50000 url("./../images/catsides.gif") repeat-x 0 0;
+	color:#FFEA05;
+	font-weight:bold;
+	margin-bottom:1px;
+	padding:5px 
+}
+
+.catSides a {
+	color: #FFEA05; 
+	text-decoration: none;
+}
+
+/**
+* 常用的一些颜色
+**/
+.row1 {
+	background-color:#e1130e;
+	margin-bottom:1px;
+	padding:5px;
+}
+.row_easy { 
+	background-color:#e1130e;
+	margin-bottom:1px;
+	padding:5px;
+	word-break:break-all;
+}
+.row_hard {
+	background-color:#e8312d;
+	margin-bottom:1px;
+	padding:5px;
+	word-break:break-all;
+}
+span.genmed { 
+	font-size : 11px;
+	}
+span.cattitle {
+	color: #FFFFFF;
+	font-weight: bold; 
+	font-size: 12px; 
+}
+
+/*
+* 代码框
+*/
+dl.codebox {
+	background-color: #FFFFFF;
+	border-color: #C9D2D8;
+	padding: 3px;
+	border: 1px solid #d8d8d8;
+	font-size: 1em;
+}
+
+dl.codebox dd {
+	margin:auto;
+}
+
+dl.codebox dt {
+	font-size: 0.9em;
+	border-bottom-color:  #CCCCCC;
+	text-transform: uppercase;
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 3px;
+	font-weight: bold;
+	display: block;
+}
+
+dl.codebox code {
+	color: #2E8B57;
+	overflow: auto;
+	display: block;
+	height: auto;
+	max-height: 200px;
+	white-space: normal;
+	padding-top: 5px;
+	font: 0.9em Monaco, "Andale Mono","Courier New", Courier, mono;
+	line-height: 1.3em;
+	margin: 2px 0;
+}
+/**
+* 底部的版权
+**/
+.copy { 
+	background:#A50000 url("./../images/cat.gif") repeat-x 0 0; 
+	color:#FFFFFF; 
+	margin-bottom:4px; 
+	padding: 7px 5px 0 53px;
+	-khtml-border-radius: 8px; 
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px; 
+	border-radius: 8px;
+}
