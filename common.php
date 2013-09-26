@@ -190,7 +190,9 @@ include($phpbb_root_path . 'attach/attachment_mod.'.$phpEx);
 
 if (file_exists('install'))
 {
-	message_die(GENERAL_MESSAGE, 'Please_remove_install');
+	//echo $lang['Please_remove_install'];
+	header('Location: ' . $phpbb_root_path . 'install/remove.' . $phpEx);
+	//message_die(GENERAL_MESSAGE, 'Please_remove_install');
 }
 
 if( $board_config['board_disable'] && !defined("IN_ADMIN") && !defined("IN_LOGIN") )

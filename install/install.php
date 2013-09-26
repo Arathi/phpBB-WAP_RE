@@ -200,10 +200,24 @@ if ( isset($_POST['agree']) )
 
 	$dbms = isset($HTTP_POST_VARS['dbms']) ? $HTTP_POST_VARS['dbms'] : '';
 
-	$dbhost = (!empty($HTTP_POST_VARS['dbhost'])) ? $HTTP_POST_VARS['dbhost'] : 'localhost';
-	$dbuser = (!empty($HTTP_POST_VARS['dbuser'])) ? $HTTP_POST_VARS['dbuser'] : '';
-	$dbpasswd = (!empty($HTTP_POST_VARS['dbpasswd'])) ? $HTTP_POST_VARS['dbpasswd'] : '';
-	$dbname = (!empty($HTTP_POST_VARS['dbname'])) ? $HTTP_POST_VARS['dbname'] : '';
+	$isappfog = (isset($HTTP_POST_VARS['appfog']) && $HTTP_POST_VARS['appfog']==true) ? true : false;
+	if ($isappfog)
+	{
+		$services = getenv("VCAP_SERVICES");
+		$services_json = json_decode($services,true);
+		$mysql_config = $services_json["mysql-5.1"][0]["credentials"];
+		$dbhost = $mysql_config["hostname"];
+		$dbuser = $mysql_config["user"];
+		$dbpasswd = $mysql_config["password"];
+		$dbname = $mysql_config["name"];
+	}
+	else
+	{
+		$dbhost = (!empty($HTTP_POST_VARS['dbhost'])) ? $HTTP_POST_VARS['dbhost'] : 'localhost';
+		$dbuser = (!empty($HTTP_POST_VARS['dbuser'])) ? $HTTP_POST_VARS['dbuser'] : '';
+		$dbpasswd = (!empty($HTTP_POST_VARS['dbpasswd'])) ? $HTTP_POST_VARS['dbpasswd'] : '';
+		$dbname = (!empty($HTTP_POST_VARS['dbname'])) ? $HTTP_POST_VARS['dbname'] : '';
+	}
 	$db_charset_utf = '1';
 
 	$table_prefix = (!empty($HTTP_POST_VARS['prefix'])) ? $HTTP_POST_VARS['prefix'] : '';
@@ -349,13 +363,11 @@ if ( isset($_POST['agree']) )
 				//继续提交同意条款
 				$s_hidden_fields .= '<input type="hidden" name="agree" value="agree" />';
 				
-
 				page_upgrade_form();
 			}
 			else
 			{
 				page_common_form($s_hidden_fields, $lang['Download_config']);
-
 			}
 
 			page_footer();
@@ -424,11 +436,22 @@ if ( isset($_POST['agree']) )
 		//继续提交同意条款
 		$s_hidden_fields .= '<input type="hidden" name="agree" value="agree" />';
 		page_header($instruction_text);
-
+		
+		$str_hidden_db_param = $isappfog ? "hidden" : "text";
 	?>
 	<div class="catSides">
 	<?php echo $lang['DB_config']; ?>
 	</div>
+	<?php if ($isappfog)
+	{ ?>
+		<input type="hidden" name="dbms" value="mysql4" />
+		<input type="hidden" name="dbhost" value="<?php echo ($dbhost != '') ? $dbhost : ''; ?>" />
+		<input type="hidden" name="dbname" value="<?php echo ($dbname != '') ? $dbname : ''; ?>" />
+		<input type="hidden" name="dbuser" value="<?php echo ($dbuser != '') ? $dbuser : ''; ?>" />
+		<input type="hidden" name="dbpasswd" value="<?php echo ($dbpasswd != '') ? $dbpasswd : ''; ?>" />
+	<?php }
+	else
+	{ ?>
 	<div class="row1">
 	<?php echo $lang['dbms']; ?>:<br/>
 	<?php echo $dbms_select; ?>
@@ -449,6 +472,7 @@ if ( isset($_POST['agree']) )
 	<?php echo $lang['DB_Password']; ?>:<br/>
 	<input type="password" name="dbpasswd" value="<?php echo ($dbpasswd != '') ? $dbpasswd : ''; ?>" />
 	</div>
+	<?php } ?>
 	<div class="row1">
 	<?php echo $lang['Table_Prefix']; ?>:<br/>
 	<input type="text" name="prefix" value="<?php echo (!empty($table_prefix)) ? $table_prefix : "phpbb_"; ?>" />
@@ -457,7 +481,6 @@ if ( isset($_POST['agree']) )
 	<?php echo $lang['Admin_config']; ?>
 	</div>
 	<?php
-
 		if ($error)
 		{
 	?>
@@ -497,7 +520,6 @@ if ( isset($_POST['agree']) )
 	<input type="password" name="admin_pass2" value="<?php echo ($admin_pass2 != '') ? $admin_pass2 : ''; ?>" />
 	</div>
 	<?php
-
 		page_common_form($s_hidden_fields, $lang['Start_Install']);
 		page_footer();
 		exit;
@@ -756,13 +778,14 @@ else
 			<div class="row1" align="center"><h2>安装协议</h2></div>
 			<div class="navbar">欢迎使用中文phpBB-WAP，phpBB-WAP是免费开源的移动终端网页程序，它可以在 GPL 协议约束的前提下，自由修改、发布。</div>
 			<div class="catSides" align="center">协议</div>
-			<form name="agree" action="<?php $_SERVER[PHP_SELF] ?>" method="post">
+			<form name="agree" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
 				<div class="row1">
 					<textarea rows="20" style="width:99%;">1、本软件为自由软件，您可以遵守 GPL 协议的前提下自由使用！
 2、本人（即 “爱疯的云” 、中文phpBB-WAP） 没有义务解答您的的问题！
 3、如果您发现程序的 bug，您可以将 bug 以帖子的形式发表到 http://zisuw.com/viewforum.php?f=32 进行交流！
 					</textarea>
 				</div>
+				<div class="row1"><input type="checkbox" name="appfog" value='false' />我要在AppFog上安装！</div>
 				<div class="row1">我 <input type="submit" name="agree" value="同意"/> 并遵守以上协议并安装！</div>
 				<div class="row1">我 <a href="./">不同意</a> 以上协议！</div>
 			</form>
