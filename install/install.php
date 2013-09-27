@@ -756,7 +756,7 @@ else
 			<div class="row1" align="center"><h2>安装协议</h2></div>
 			<div class="navbar">欢迎使用中文phpBB-WAP，phpBB-WAP是免费开源的移动终端网页程序，它可以在 GPL 协议约束的前提下，自由修改、发布。</div>
 			<div class="catSides" align="center">协议</div>
-			<form name="agree" action="<?php $_SERVER[PHP_SELF] ?>" method="post">
+			<form name="agree" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
 				<div class="row1">
 					<textarea rows="20" style="width:99%;">1、本软件为自由软件，您可以遵守 GPL 协议的前提下自由使用！
 2、本人（即 “爱疯的云” 、中文phpBB-WAP） 没有义务解答您的的问题！

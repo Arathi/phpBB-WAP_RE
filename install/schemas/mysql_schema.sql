@@ -956,7 +956,7 @@ CREATE TABLE phpbb_linkexchange (
   link_out int(11) NOT NULL default '0',
   link_in int(11) NOT NULL default '0',
   PRIMARY KEY  (link_id)
-) TYPE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # ±í£ºphpbb_specials
 # ÃèÊö£º×¨Ìâ
