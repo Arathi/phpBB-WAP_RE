@@ -16,7 +16,7 @@
 			<!-- END switch_user_logged_in -->
 			<ul class="linklist rightside">
 				<li class="icon-faq"><a href="{U_FAQ}">{L_FAQ}</a></li>
-				<li class="icon-search"><a href="{U_SEARCH}">{L_SEARCH}</a</li>
+				<li class="icon-search"><a href="{U_SEARCH}">{L_SEARCH}</a></li>
 				<!-- BEGIN switch_user_logged_in -->
 				<li class="icon-members"><a href="{U_MEMBERLIST}">{L_MEMBERLIST}</a></li>
 				<!-- END switch_user_logged_in -->

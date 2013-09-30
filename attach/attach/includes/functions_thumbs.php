@@ -152,4 +152,4 @@ function create_thumbnail($source, $new_file, $mimetype)
 				case IMG_GIF:
 					$image = imagecreatefromgif($source);
 					break;
-				
+					

@@ -108,7 +108,7 @@
 					<legend>{L_COOKIE_SETTINGS}</legend>
 					<dl>
 						<dt><label>{L_COOKIE_DOMAIN}:</label></dt>
-						<dd><input type="text" maxlength="255" name="cookie_domain" value="{COOKIE_DOMAIN}" /</dd>
+						<dd><input type="text" maxlength="255" name="cookie_domain" value="{COOKIE_DOMAIN}" /></dd>
 					</dl>
 					<dl>
 						<dt><label>{L_COOKIE_NAME}:</label></dt>
