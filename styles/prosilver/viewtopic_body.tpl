@@ -89,7 +89,7 @@ function bbcode(Tag) {
 <!-- BEGIN user_otv -->
 function otv(u) {
 	var t = document.getElementById('text');
-		t.value  += u + ', ';
+		t.value  += '@' + u + ', ';
 	var end = t.value.length; 
 	t.setSelectionRange(end,end); 
 	t.focus(); 

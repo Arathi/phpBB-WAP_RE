@@ -1418,6 +1418,7 @@ for($i = 0; $i < $total_posts; $i++)
 			$avatar_img = $poster_posts = $special_select = $special = '';
 	}
 
+	$message = preg_replace("!(@|＠)([\\x{4e00}-\\x{9fa5}A-Za-z0-9_\\-]{1,})(\x20|&nbsp;|<|\xC2\xA0|\r|\n|\x03|\t|,|\\?|\\!|:|;|，|。|？|！|：|；|、|…|$)!ue","'\\1<a href=\"./profile.php?mode=viewprofile&amp;u=2&user='.urlencode('\\2').'\">\\2</a>\\3'",$message);
 	$template->assign_block_vars('postrow', array(
 		'POSTER_ID'		=> $poster_id,
 		'AVATAR_IMG' 	=> $avatar_img,

@@ -200,29 +200,40 @@ function dss_rand()
 /**
 * 取得userdata
 **/
-function get_userdata($user, $force_str = false)
+function get_userdata($user,$postuser = false,$force_str = false)
 {
-	global $db;
-
-	if (!is_numeric($user) || $force_str)// 检测变量是否为数字或数字字符串
-	{
-		$user = phpbb_clean_username($user);
-	}
-	else
-	{
-		$user = intval($user);//设置为整数
-	}
-
-	$sql = "SELECT *
-		FROM " . USERS_TABLE . " 
-		WHERE ";
-	$sql .= ( ( is_integer($user) ) ? "user_id = $user" : "username = '" .  str_replace("\'", "''", $user) . "'" ) . " AND user_id <> " . ANONYMOUS;
-	if ( !($result = $db->sql_query($sql)) )
-	{
-		message_die(GENERAL_ERROR, 'Tried obtaining data for a non-existent user', '', __LINE__, __FILE__, $sql);
-	}
-
-	return ( $row = $db->sql_fetchrow($result) ) ? $row : false;
+    global $db;
+    if ($postuser != NULL)
+    {
+        $sql = "SELECT *
+                FROM " . USERS_TABLE . " 
+                WHERE username='".$postuser."';";
+        if ( !($result = $db->sql_query($sql)) )
+        {
+            message_die(GENERAL_ERROR, 'Tried obtaining data for a non-existent user', '', __LINE__, __FILE__, $sql);
+        }
+        return ( $row = $db->sql_fetchrow($result) ) ? $row : false;
+    }
+    else
+    {
+        if (!is_numeric($user) || $force_str)
+        {
+            $user = phpbb_clean_username($user);
+        }
+        else
+        {
+            $user = intval($user);
+        }
+        $sql = "SELECT *
+		        FROM " . USERS_TABLE . " 
+		        WHERE ";
+        $sql .= ( ( is_integer($user) ) ? "user_id = $user" : "username = '" .  str_replace("\'", "''", $user) . "'" ) . " AND user_id <> " . ANONYMOUS;
+        if ( !($result = $db->sql_query($sql)) )
+        {
+            message_die(GENERAL_ERROR, 'Tried obtaining data for a non-existent user', '', __LINE__, __FILE__, $sql);
+        }
+        return ( $row = $db->sql_fetchrow($result) ) ? $row : false;
+    }
 }
 
 /**
@@ -1024,6 +1035,67 @@ function check_medal_mod($medal_id)
 	$db->sql_freeresult($result);
 	
 	return $found;
+}
+
+function phpbb_message_at($message)
+{
+    global $db, $userdata;
+    $message = $message;
+    $path = $_SERVER['PHP_SELF'];
+    $path = parse_url($path);
+    $at_url = $path['path'];
+    $at_url = basename($at_url);
+    if ($at_url == 'posting.php')
+    {
+        $at_url = 'viewtopic.php?p=';
+    }
+    $sql = "SELECT post_id FROM " . POSTS_TABLE . " ORDER BY post_id DESC LIMIT 1;";
+    if (!$result = $db->sql_query($sql))
+    {
+        message_die(GENERAL_ERROR, '无法获取最后post值', '', __LINE__, __FILE__, $sql);
+    }
+    $msgrow = $db->sql_fetchrow($result);
+    $at_p = $msgrow['post_id'] + 1;
+    
+    preg_match_all("!(@|＠)([\\x{4e00}-\\x{9fa5}A-Za-z0-9_\\-]{1,})(\x20|&nbsp;|<|\xC2\xA0|\r|\n|\x03|\t|,|\\?|\\!|:|;|，|。|？|！|：|；|、|…|$)!ue",$message,$matches);
+    $atuser = $matches[2];
+    for ($i = 0;$i < count($atuser);$i++)
+    {
+        $sql = "SELECT * FROM " . USERS_TABLE . " WHERE username='".$atuser[$i]."';";
+        if (!$result = $db->sql_query($sql))
+        {
+            message_die(GENERAL_ERROR, '无法获取用户信息', '', __LINE__, __FILE__, $sql);
+        }
+        $row = $db->sql_fetchrow($result);
+        $to_userdata = $row['user_id'];
+        
+        $msg_time = time();
+        $sql_info = "INSERT INTO " . PRIVMSGS_TABLE . " (privmsgs_type, privmsgs_subject, privmsgs_from_userid, privmsgs_to_userid, privmsgs_date, privmsgs_ip, privmsgs_enable_html, privmsgs_enable_bbcode, privmsgs_enable_smilies, privmsgs_attach_sig) VALUES (" . PRIVMSGS_NEW_MAIL . ",'@消息', " . $userdata['user_id'] . ", " . $row['user_id'] . ", $msg_time, '$user_ip', 0, 0, 0, '@系统消息')";
+        if (!$result = $db->sql_query($sql_info))
+        {
+            message_die(GENERAL_ERROR, '无法插入数据到信息表', '', __LINE__, __FILE__, $sql);
+        }
+        
+        $sql = "SELECT privmsgs_id FROM " . PRIVMSGS_TABLE . " ORDER BY privmsgs_id DESC LIMIT 1;";
+        if (!$result = $db->sql_query($sql))
+        {
+            message_die(GENERAL_ERROR, '无法获取最后privmsgs_id', '', __LINE__, __FILE__, $sql);
+        }
+        $msgrow = $db->sql_fetchrow($result);
+        $sql = "UPDATE phpbb_users SET user_new_privmsg=user_new_privmsg+1 WHERE user_id='".$row['user_id']."';";
+        $db->sql_query($sql);
+        
+        $privmsg_sent_id = $msgrow['privmsgs_id'];
+        $bbcode_uid = make_bbcode_uid();
+        $at_message = "<a href=\"".$phpbb_root_path.$at_url.$at_p."\">点击查看</a>";
+        $sql = "INSERT INTO " . PRIVMSGS_TEXT_TABLE . " (privmsgs_text_id, privmsgs_bbcode_uid, privmsgs_text)
+        VALUES ($privmsg_sent_id, '" . $bbcode_uid . "', '" . str_replace("\'", "''", $at_message) . "')";
+        if (!$result = $db->sql_query($sql))
+        {
+            message_die(GENERAL_ERROR, '无法插入数据到privmsgs_text', '', __LINE__, __FILE__, $sql);
+        }
+    }
+    return $message;
 }
 
 ?>

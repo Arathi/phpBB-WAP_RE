@@ -109,6 +109,7 @@ if ( (isset($HTTP_POST_VARS['submit']) && isset($HTTP_POST_VARS['message'])) && 
 		require_once($phpbb_root_path . 'includes/functions_post.'.$phpEx);
 		$bbcode_uid = ( $bbcode_on ) ? make_bbcode_uid() : '';
 		$message = prepare_message(trim($message), $html_on, $bbcode_on, $smilies_on, $bbcode_uid);
+		$message = phpbb_message_at($message);
 		$sql = "INSERT INTO " . SHOUTBOX_TABLE. " (shout_text, shout_session_time, shout_user_id, shout_ip, shout_username, shout_bbcode_uid,enable_bbcode,enable_html,enable_smilies) 
 				VALUES ('$message', '".time()."', '".$userdata['user_id']."', '$user_ip', '".phpbb_clean_username($userdata['username'])."', '".$bbcode_uid."',1,0,1)";
 		if (!$result = $db->sql_query($sql)) 

@@ -74,6 +74,7 @@ define('PRIVMSGS_UNREAD_MAIL', 5);
 define('POST_TOPIC_URL', 't');
 define('POST_CAT_URL', 'c');
 define('POST_FORUM_URL', 'f');
+define('POST_USERNAME_URL', 'user');
 define('POST_USERS_URL', 'u');
 define('POST_POST_URL', 'p');
 define('POST_GROUPS_URL', 'g');
