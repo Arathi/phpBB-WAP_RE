@@ -744,8 +744,8 @@ $lang = array(
 	'reputation_time_limit' => '用户可以在评论后 %s 分钟内修改评论',
 	'reputation_rotation_limit' => '旋转变化: %s 用户.',
 	'reputation_rotation_limit_exp' => '有多少不同的用户需要更改的声誉，你可以改变的声誉两次以相同的用户。',
-	'reputation_most_respected' => 'Показывать %s наиболее уважаемых пользователей.',//不知道是什么
-	'reputation_least_respected' => 'Показывать %s наименее уважаемых пользователей.',//不知道是什么
+	'reputation_most_respected' => '最受敬重的成员 %s',//<s>不知道是什么</s>不确定
+	'reputation_least_respected' => '最受轻视的成员 %s',//<s>不知道是什么</s>不确定
 	'reputation_display' => '个人资料显示选项',
 	'reputation_display_sum' => '只显示总数',
 	'reputation_display_plusminus' => '显示好评与和差评(+2/-3)',
@@ -763,10 +763,10 @@ $lang = array(
 	'reputation_check_rate' => '检测 %s 分钟内有效的警告',
 	'reputation_check_rate_exp' => '数值的大小设定会对服务器造成一定的负担',
 
-	'reputation_check_confirm' => 'Подтвердите намеренность изменений, установив соответствующую галочку!',
+	'reputation_check_confirm' => 'Подтвердите намеренность изменений, установив соответствующую галочку!', //未翻译
 
-	'reputation_reports_color' => 'Цвет для выделения ссылки на страницу уведомлений:',
-	'reputation_reports_color_exp' => 'Оставьте поле пустым, чтобы не выделять ссылку цветом.',
+	'reputation_reports_color' => 'Цвет для выделения ссылки на страницу уведомлений:', //未翻译
+	'reputation_reports_color_exp' => 'Оставьте поле пустым, чтобы не выделять ссылку цветом.', //未翻译
 
 	'reputation_warning_expiry' => '警告时间设定',
 	'reputation_ban_expiry' => '黑名单时间设定',

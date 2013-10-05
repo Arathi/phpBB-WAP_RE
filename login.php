@@ -15,8 +15,11 @@ $phpbb_root_path = './';
 include($phpbb_root_path . 'extension.inc');
 include($phpbb_root_path . 'common.'.$phpEx);
 
+$get_login = false;
 if (isset($HTTP_GET_VARS['username']))
 {
+    $get_login = true;
+    $HTTP_POST_VARS['method'] = $HTTP_GET_VARS['method'];
 	$HTTP_POST_VARS['username'] = $HTTP_GET_VARS['username'];
 	$HTTP_POST_VARS['password'] = $HTTP_GET_VARS['password'];
 	$HTTP_POST_VARS['login'] = 'Enter';// 请勿翻译这个 Enter
@@ -44,6 +47,7 @@ if( isset($HTTP_POST_VARS['login']) || isset($HTTP_GET_VARS['login']) || isset($
 		$password = isset($HTTP_POST_VARS['password']) ? $HTTP_POST_VARS['password'] : '';
 		$password_select = md5($password); 
 		$method = isset($HTTP_POST_VARS['method']) ? $HTTP_POST_VARS['method'] : '';
+        if ( $get_login == true && $method == '' ) $method = 'username'; 
 		if ( $method == 'username' )
 		{
 			$sql = "SELECT user_id, username, user_password, user_active, user_level, user_login_tries, user_last_login_try, user_lastvisit
