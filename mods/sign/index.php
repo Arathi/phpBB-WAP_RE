@@ -111,8 +111,8 @@ else
 {
 	
 	$confirm = ( isset($HTTP_POST_VARS['confirm']) ) ? true : false;
-	$user_id = ( isset($HTTP_POST_VARS['userid']) ) ? intval($HTTP_POST_VARS['userid']) : false;
-	$time = ( isset($HTTP_POST_VARS['time']) ) ? intval($HTTP_POST_VARS['time']) : false;
+	$user_id = $userdata['user_id'];
+	$time = date(time());
 	$talk = ( isset($HTTP_POST_VARS['smile_code']) ) ? htmlspecialchars($HTTP_POST_VARS['smile_code']) : '';
 	$talk .= ( isset($HTTP_POST_VARS['talk']) ) ? htmlspecialchars($HTTP_POST_VARS['talk']) : false;
 	if ( $confirm )
