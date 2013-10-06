@@ -214,7 +214,8 @@ $template->set_filenames(array(
 		{
 			$i++;
 			$user_id = $shout_row['shout_user_id'];
-			$shout_username = ( $user_id == ANONYMOUS ) ? (( $shout_row['shout_username'] == '' ) ? $lang['Guest'] : $shout_row['shout_username'] ) : '<a href="#">' . $shout_row['username'] . '</a>';
+			//$shout_username = ( $user_id == ANONYMOUS ) ? (( $shout_row['shout_username'] == '' ) ? $lang['Guest'] : $shout_row['shout_username'] ) : '<a href="#">' . $shout_row['username'] . '</a>';
+			$shout_username = ( $user_id == ANONYMOUS ) ? (( $shout_row['shout_username'] == '' ) ? $lang['Guest'] : $shout_row['shout_username'] ) : '<a href="' . append_sid("profile.$phpEx?mode=viewprofile&amp;" . 'u=' . $shout_row['user_id']) . '">' . $shout_row['username'] . '</a>';
 			$shout = (! $shout_row['shout_active']) ? $shout_row['shout_text'] : $lang['Shout_censor'].(($is_auth['auth_mod']) ? '<br/><hr/><br/>'.$shout_row['shout_text'] : '');
 			$message = make_clickable($message);
 			$shout = smilies_pass($shout);
