@@ -415,12 +415,16 @@ function setup_style($style)
 /**
 * 校正 IP 地址
 **/
-function encode_ip($dotquad_ip)
+function encode_ip($dotquad_ip, $die=true)
 {
-	// preg_match() 正则表达式匹配，匹配 IP
+    //检测IPv6的localhost
+    if ($dotquad_ip=="::1") $dotquad_ip="127.0.0.1";
 	if( !preg_match("/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/", $dotquad_ip) )
 	{
-		message_die(CRITICAL_ERROR, 'IP地址错误！');
+        if ( $die )
+        {
+            message_die(CRITICAL_ERROR, 'IP地址错误！');
+        }
 	}
 	$ip_sep = explode('.', $dotquad_ip);
 	// sprintf() 函数把格式化的字符串写写入一个变量中，在语言包中可以经常见到
