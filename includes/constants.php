@@ -198,4 +198,6 @@ $zodiacs = array (
 	'Sagittarius','Capricorn'
 );
 define('LINK_EXCHANGE_TABLE', $table_prefix.'linkexchange');
+
+include_once $phpbb_root_path . 'mods/includes/constants.' . $phpEx;
 ?>

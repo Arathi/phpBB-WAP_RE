@@ -351,6 +351,7 @@ if ( !empty($profiledata['user_gender']))
 }
 $page_title = $lang['Viewing_profile'];
 include($phpbb_root_path . 'includes/page_header.'.$phpEx);
+//include_once($phpbb_root_path . 'mods/include/constants.'.$phpEx);
 display_upload_attach_box_limits($profiledata['user_id']);
 
 $template->set_filenames(array(
@@ -495,7 +496,7 @@ if ( empty($holding[$poster_id]) )
 {
 	$sql = "SELECT holding
 		FROM " . BANK_TABLE . "
-		WHERE user_id = '{$profiledata['user_id']}'";
+		WHERE user_id = '" . $profiledata['user_id'] . "'";
 	$result = $db->sql_query($sql);
 	$bank_row = $db->sql_fetchrow($result);
 
