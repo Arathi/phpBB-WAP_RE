@@ -50,7 +50,7 @@
 <a href="http://phpbb-wap.ru">русский</a>|<a href="http://daivietpda.com/phpbbwap/">Việt Nam</a>
 </div>
 <div class="catSides">
-	 <span class="cattitle"><a href="http://zisuw.com/chat.php"><font color=#ffffff>聊天室动态</font></a></span>
+	 <span class="cattitle"><a href="./chat.php"><font color=#ffffff>聊天室动态</font></a></span>
 </div>
 <!-- BEGIN shoutrow -->
 	<div class="row1">
