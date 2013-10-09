@@ -23,7 +23,7 @@ if ( isset($_POST['agree']) )
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />			
 	<title>安装_填写信息</title>
 	<link rel="shortcut icon" href="http://phpbb-wap.com/favicon.ico" />
-	<link rel="stylesheet" href="http://phpbb-wap.com/style.css" type="text/css" />	
+	<link rel="stylesheet" href="../styles/prosilver/theme/prosilver.css" type="text/css" />	
 	</head>
 	<body>
 	<div class="wrap">
@@ -748,7 +748,7 @@ else
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />			
 	<title>安装_协议</title>
 	<link rel="shortcut icon" href="http://phpbb-wap.com/favicon.ico" />
-	<link rel="stylesheet" href="http://phpbb-wap.com/style.css" type="text/css" />	
+	<link rel="stylesheet" href="../styles/prosilver/theme/prosilver.css" type="text/css" />	
 	</head>
 	<body>
 		<div class="wrap">
