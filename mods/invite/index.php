@@ -19,7 +19,15 @@ $page_title = '邀请';
 include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 
 $user_id = get_var('user_id',0);
+$url_invite = '';
 
+$script_name = preg_replace('/^\/?(.*?)\/?$/', '\1', trim($board_config['script_path']));
+$script_name = ($script_name != '') ? $script_name . '/mods/invite/index.'.$phpEx : 'mods/invite/index.'.$phpEx; //脚本名
+$server_name = trim($board_config['server_name']); //服务器名
+$server_protocol = ($board_config['cookie_secure']) ? 'https://' : 'http://'; //协议
+$server_port = ($board_config['server_port'] != 80) ? ':' . trim($board_config['server_port']) . '/' : '/'; //端口
+
+$url_invite = $server_protocol . $server_name . $server_port . $script_name;
 
 if ($user_id == 0)
 {
@@ -85,6 +93,7 @@ $template->set_filenames(array(
 	'body' => 'mods/invite.tpl')
 );
 $template->assign_vars(array(
+    'U_ROOT'        => $url_invite,
 	'USERNAME' 		=> $userdata['username'],
 	'USER_ID' 		=> $userdata['user_id'],
 	'INVITE_NUM' 	=> $invite_num,
