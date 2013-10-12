@@ -452,7 +452,9 @@ if( $total_topics )
 		}
 		
 		$view_topic_url = append_sid("viewtopic.$phpEx?" . POST_TOPIC_URL . "=$topic_id");
-		$last_post_author = ( $topic_rowset[$i]['id2'] == ANONYMOUS ) ? ( ($topic_rowset[$i]['post_username2'] != '' ) ? $topic_rowset[$i]['post_username2'] . ' ' : $lang['Guest'] . ' ' ) :  $topic_rowset[$i]['user2']  ;
+        //print_r($topic_rowset[$i]);
+		$author = $topic_rowset[$i]['username'];
+        $last_post_author = ( $topic_rowset[$i]['id2'] == ANONYMOUS ) ? ( ($topic_rowset[$i]['post_username2'] != '' ) ? $topic_rowset[$i]['post_username2'] . ' ' : $lang['Guest'] . ' ' ) :  $topic_rowset[$i]['user2']  ;
 		$last_post_url = '<a href="' . append_sid("viewtopic.$phpEx?"  . POST_POST_URL . '=' . $topic_rowset[$i]['topic_last_post_id']) . '#' . $topic_rowset[$i]['topic_last_post_id'] . '">' . $lang['View_latest_post'] . '</a>';
 		
 		$nomer_posta = $i + $start + 1;
@@ -464,6 +466,7 @@ if( $total_topics )
 			'TOPIC_TYPE' 			=> $topic_type,
 			'NOMER_POSTA' 			=> $nomer_posta,
 			'REPLIES' 				=> $replies,
+            'AUTHOR'                => $author,
 			'LAST_POST_AUTHOR' 		=> $last_post_author, 
 			'LAST_POST_IMG' 		=> $last_post_url, 
 			'L_TOPIC_FOLDER_ALT' 	=> $folder_alt, 

@@ -763,7 +763,7 @@ $lang['Sort_by'] = '排序方法';
 $lang['Sort_Time'] = '发表时间';
 $lang['Sort_Post_Subject'] = '主题';
 $lang['Sort_Topic_Title'] = '文章标题';
-$lang['Sort_Author'] = '作者';
+$lang['Sort_Author'] = '主题作者';
 $lang['Sort_Forum'] = '论坛';
 
 $lang['Display_results'] = '显示模式';

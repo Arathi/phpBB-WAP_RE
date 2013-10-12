@@ -5,7 +5,7 @@
 <!-- BEGIN searchresults -->
 <div class="row1">
 <a href="{searchresults.U_VIEW_FORUM}">{searchresults.FORUM_NAME}</a>&gt;<a href="{searchresults.U_VIEW_TOPIC}">{searchresults.TOPIC_TITLE}</a>{searchresults.LAST_POST_IMG} <br />
-[作者:{searchresults.LAST_POST_AUTHOR}/发表时间:{searchresults.LAST_POST_TIME}]
+[最后回复:{searchresults.LAST_POST_AUTHOR}/发表时间:{searchresults.LAST_POST_TIME}]
 </div>
 <!-- END searchresults -->
 {PAGINATION}

@@ -11,7 +11,7 @@
 </div>
 <!-- BEGIN topicrow -->
 	<div class="row1">
-		{topicrow.NOMER_POSTA}.{topicrow.L_TOPIC_FOLDER_ALT}{topicrow.A_TOPIC_COLOR}{topicrow.TOPIC_ATTACHMENT_IMG}{topicrow.TOPIC_TYPE}<a href="{topicrow.U_VIEW_TOPIC}">{topicrow.TOPIC_TITLE}</a>[回:{topicrow.REPLIES}/作者:{topicrow.LAST_POST_AUTHOR}]{topicrow.LAST_POST_IMG}
+		{topicrow.NOMER_POSTA}.{topicrow.L_TOPIC_FOLDER_ALT}{topicrow.A_TOPIC_COLOR}{topicrow.TOPIC_ATTACHMENT_IMG}{topicrow.TOPIC_TYPE}<a href="{topicrow.U_VIEW_TOPIC}">{topicrow.TOPIC_TITLE}</a><br/>[作者:{topicrow.AUTHOR}/回:{topicrow.REPLIES}/最后发表:{topicrow.LAST_POST_AUTHOR}]{topicrow.LAST_POST_IMG}
 	</div>
 <!-- END topicrow -->
 
