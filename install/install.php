@@ -520,6 +520,7 @@ if ( isset($_POST['agree']) )
 			include($phpbb_root_path.'includes/db.'.$phpEx);
 		}
 
+        $dbms_drop = 'schemas/' . $available_dbms[$dbms]['SCHEMA'] . '_drop.sql';
 		$dbms_schema = 'schemas/' . $available_dbms[$dbms]['SCHEMA'] . '_schema.sql';
 		$dbms_basic = 'schemas/' . $available_dbms[$dbms]['SCHEMA'] . '_basic.sql';
 
@@ -534,14 +535,35 @@ if ( isset($_POST['agree']) )
 				if ($dbms != 'msaccess')
 				{
 					include($phpbb_root_path.'includes/sql_parse.'.$phpEx);
+					$db->sql_query("ALTER DATABASE " . $dbname . " DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci");
+                    
+					$sql_query = @fread(@fopen($dbms_drop, 'r'), @filesize($dbms_drop));
+					$sql_query = preg_replace('/phpbb_/', $table_prefix, $sql_query);
+
+					$sql_query = $remove_remarks($sql_query);
+					$sql_query = split_sql_file($sql_query, $delimiter);
+
+					for ($i = 0; $i < sizeof($sql_query); $i++)
+					{
+						if (trim($sql_query[$i]) != '')
+						{
+                            //echo $sql_query[$i];
+							if (!($result = $db->sql_query($sql_query[$i])))
+							{
+								$error = $db->sql_error();
+								page_header($lang['Install'], '');
+								page_error($lang['Installer_Error'], $lang['Install_db_error'] . '<br />' . $error['message'] . '<br/>' . $sql_query[$i]);
+								page_footer();
+								exit;
+							}
+						}
+					}
 
 					$sql_query = @fread(@fopen($dbms_schema, 'r'), @filesize($dbms_schema));
 					$sql_query = preg_replace('/phpbb_/', $table_prefix, $sql_query);
 
 					$sql_query = $remove_remarks($sql_query);
 					$sql_query = split_sql_file($sql_query, $delimiter);
-
-					$db->sql_query("ALTER DATABASE " . $dbname . " DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci");
 
 					for ($i = 0; $i < sizeof($sql_query); $i++)
 					{
@@ -552,7 +574,7 @@ if ( isset($_POST['agree']) )
 								$error = $db->sql_error();
 				
 								page_header($lang['Install'], '');
-								page_error($lang['Installer_Error'], $lang['Install_db_error'] . '<br />' . $error['message']);
+								page_error($lang['Installer_Error'], $lang['Install_db_error'] . '<br />' . $error['message'] . '<br/>' . $sql_query[$i]);
 								page_footer();
 								exit;
 							}
@@ -574,7 +596,7 @@ if ( isset($_POST['agree']) )
 								$error = $db->sql_error();
 
 								page_header($lang['Install'], '');
-								page_error($lang['Installer_Error'], $lang['Install_db_error'] . '<br />' . $error['message']);
+								page_error($lang['Installer_Error'], $lang['Install_db_error'] . '<br />' . $error['message'] . '<br/>' . $sql_query[$i]);
 								page_footer();
 								exit;
 							}

@@ -4,7 +4,7 @@
 
 # 表：phpbb_auth_access
 # 描述：权限相关
-CREATE TABLE phpbb_auth_access (
+CREATE TABLE IF NOT EXISTS phpbb_auth_access (
    group_id mediumint(8) DEFAULT '0' NOT NULL,
    forum_id smallint(5) UNSIGNED DEFAULT '0' NOT NULL,
    auth_view tinyint(1) DEFAULT '0' NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE phpbb_auth_access (
 
 # 表：phpbb_user_group
 # 描述：用户组
-CREATE TABLE phpbb_user_group (
+CREATE TABLE IF NOT EXISTS phpbb_user_group (
    group_id mediumint(8) DEFAULT '0' NOT NULL,
    user_id mediumint(8) DEFAULT '0' NOT NULL,
    user_pending tinyint(1),
@@ -36,7 +36,7 @@ CREATE TABLE phpbb_user_group (
 
 # 表：phpbb_groups
 # 描述：全局小组
-CREATE TABLE phpbb_groups (
+CREATE TABLE IF NOT EXISTS phpbb_groups (
    group_id mediumint(8) NOT NULL auto_increment,
    group_type tinyint(4) DEFAULT '1' NOT NULL,
    group_name varchar(40) DEFAULT '' NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE phpbb_groups (
 
 # 表：phpbb_groups_guestbook
 # 描述：全局小组留言板
-CREATE TABLE phpbb_groups_guestbook (
+CREATE TABLE IF NOT EXISTS phpbb_groups_guestbook (
    gb_id int(10) NOT NULL auto_increment,
    group_id int(10) NOT NULL default '0',
    poster_id int(10) NOT NULL default '0',
@@ -63,7 +63,7 @@ CREATE TABLE phpbb_groups_guestbook (
 
 # 表：phpbb_banlist
 # 描述：黑名单列表
-CREATE TABLE phpbb_banlist (
+CREATE TABLE IF NOT EXISTS phpbb_banlist (
    ban_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    ban_userid mediumint(8) NOT NULL,
    ban_ip char(8) NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE phpbb_banlist (
 
 # 表：phpbb_bookmarks
 # 描述：书签
-CREATE TABLE phpbb_bookmarks (
+CREATE TABLE IF NOT EXISTS phpbb_bookmarks (
    topic_id mediumint(8) unsigned NOT NULL default '0',
    user_id mediumint(8) NOT NULL default '0',
    start mediumint(8) not null DEFAULT '0',
@@ -84,7 +84,7 @@ CREATE TABLE phpbb_bookmarks (
 
 # 表：phpbb_categories
 # 描述：论坛分类
-CREATE TABLE phpbb_categories (
+CREATE TABLE IF NOT EXISTS phpbb_categories (
    cat_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    cat_title varchar(100),
    cat_icon varchar(100),
@@ -95,7 +95,7 @@ CREATE TABLE phpbb_categories (
 
 # 表：phpbb_config
 # 描述：网站全局配置
-CREATE TABLE phpbb_config (
+CREATE TABLE IF NOT EXISTS phpbb_config (
     config_name varchar(255) NOT NULL,
     config_value varchar(255) NOT NULL,
     PRIMARY KEY (config_name)
@@ -103,7 +103,7 @@ CREATE TABLE phpbb_config (
 
 # 表：phpbb_config
 # 描述：表单提交确认处理
-CREATE TABLE phpbb_confirm (
+CREATE TABLE IF NOT EXISTS phpbb_confirm (
   confirm_id char(32) DEFAULT '' NOT NULL,
   session_id char(32) DEFAULT '' NOT NULL,
   code char(6) DEFAULT '' NOT NULL, 
@@ -112,7 +112,7 @@ CREATE TABLE phpbb_confirm (
 
 # 表：phpbb_disallow
 # 描述：封禁
-CREATE TABLE phpbb_disallow (
+CREATE TABLE IF NOT EXISTS phpbb_disallow (
    disallow_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    disallow_username varchar(25) DEFAULT '' NOT NULL,
    PRIMARY KEY (disallow_id)
@@ -120,7 +120,7 @@ CREATE TABLE phpbb_disallow (
 
 # 表：phpbb_forum_prune
 # 描述：论坛的相关值
-CREATE TABLE phpbb_forum_prune (
+CREATE TABLE IF NOT EXISTS phpbb_forum_prune (
    prune_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    forum_id smallint(5) UNSIGNED NOT NULL,
    prune_days smallint(5) UNSIGNED NOT NULL,
@@ -131,7 +131,7 @@ CREATE TABLE phpbb_forum_prune (
 
 # 表：phpbb_forums
 # 描述：论坛
-CREATE TABLE phpbb_forums (
+CREATE TABLE IF NOT EXISTS phpbb_forums (
    forum_id smallint(5) UNSIGNED NOT NULL,
    cat_id mediumint(8) UNSIGNED NOT NULL,
    forum_name varchar(150),
@@ -166,7 +166,7 @@ CREATE TABLE phpbb_forums (
 
 # 表：phpbb_posts
 # 描述：帖子的信息，不包含内容
-CREATE TABLE phpbb_posts (
+CREATE TABLE IF NOT EXISTS phpbb_posts (
    post_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    topic_id mediumint(8) UNSIGNED DEFAULT '0' NOT NULL,
    forum_id smallint(5) UNSIGNED DEFAULT '0' NOT NULL,
@@ -192,7 +192,7 @@ CREATE TABLE phpbb_posts (
 
 # 表：phpbb_post_reports
 # 描述：帖子回复
-CREATE TABLE phpbb_post_reports (
+CREATE TABLE IF NOT EXISTS phpbb_post_reports (
   report_id mediumint(8) NOT NULL auto_increment,
   post_id mediumint(8) NOT NULL default '0',
   reporter_id mediumint(8) NOT NULL default '0',
@@ -207,7 +207,7 @@ CREATE TABLE phpbb_post_reports (
 
 # 表：phpbb_posts_text
 # 描述：帖子的内容和标题
-CREATE TABLE phpbb_posts_text (
+CREATE TABLE IF NOT EXISTS phpbb_posts_text (
    post_id mediumint(8) UNSIGNED DEFAULT '0' NOT NULL,
    bbcode_uid char(10) DEFAULT '' NOT NULL,
    post_subject char(60),
@@ -217,7 +217,7 @@ CREATE TABLE phpbb_posts_text (
 
 # 表：phpbb_privmsgs
 # 描述：信息，不包含信息的内容
-CREATE TABLE phpbb_privmsgs (
+CREATE TABLE IF NOT EXISTS phpbb_privmsgs (
    privmsgs_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    privmsgs_type tinyint(4) DEFAULT '0' NOT NULL,
    privmsgs_subject varchar(255) DEFAULT '0' NOT NULL,
@@ -237,7 +237,7 @@ CREATE TABLE phpbb_privmsgs (
 
 # 表：phpbb_privmsgs_text
 # 描述：信息的内容
-CREATE TABLE phpbb_privmsgs_text (
+CREATE TABLE IF NOT EXISTS phpbb_privmsgs_text (
    privmsgs_text_id mediumint(8) UNSIGNED DEFAULT '0' NOT NULL,
    privmsgs_bbcode_uid char(10) DEFAULT '0' NOT NULL,
    privmsgs_text text,
@@ -246,7 +246,7 @@ CREATE TABLE phpbb_privmsgs_text (
 
 # 表：phpbb_ranks
 # 描述：等级
-CREATE TABLE phpbb_ranks (
+CREATE TABLE IF NOT EXISTS phpbb_ranks (
    rank_id smallint(5) UNSIGNED NOT NULL auto_increment,
    rank_title varchar(50) NOT NULL,
    rank_min mediumint(8) DEFAULT '0' NOT NULL,
@@ -257,7 +257,7 @@ CREATE TABLE phpbb_ranks (
 
 # 表：phpbb_reputation
 # 描述：评价
-CREATE TABLE phpbb_reputation (
+CREATE TABLE IF NOT EXISTS phpbb_reputation (
   id mediumint(8) unsigned NOT NULL auto_increment,
   modification tinyint(1) NOT NULL default '0',
   user_id mediumint(8) NOT NULL default '0',
@@ -278,7 +278,7 @@ CREATE TABLE phpbb_reputation (
 
 # 表：phpbb_reputation_text
 # 描述：评价内容
-CREATE TABLE phpbb_reputation_text (
+CREATE TABLE IF NOT EXISTS phpbb_reputation_text (
    id mediumint(8) unsigned NOT NULL default '0',
    text text,
    text_message text,
@@ -289,7 +289,7 @@ CREATE TABLE phpbb_reputation_text (
 
 # 表：phpbb_search_results
 # 描述：搜索结果
-CREATE TABLE phpbb_search_results (
+CREATE TABLE IF NOT EXISTS phpbb_search_results (
   search_id int(11) UNSIGNED NOT NULL default '0',
   session_id char(32) NOT NULL default '',
   search_time int(11) DEFAULT '0' NOT NULL,
@@ -300,7 +300,7 @@ CREATE TABLE phpbb_search_results (
 
 # 表：phpbb_search_wordlist
 # 描述：搜索关键词
-CREATE TABLE phpbb_search_wordlist (
+CREATE TABLE IF NOT EXISTS phpbb_search_wordlist (
    word_text varchar(50) binary NOT NULL default '',
    word_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    word_common tinyint(1) unsigned NOT NULL default '0',
@@ -310,7 +310,7 @@ CREATE TABLE phpbb_search_wordlist (
 
 # 表：phpbb_search_wordmatch
 # 描述：搜索匹配
-CREATE TABLE phpbb_search_wordmatch (
+CREATE TABLE IF NOT EXISTS phpbb_search_wordmatch (
    post_id mediumint(8) UNSIGNED NOT NULL default '0',
    word_id mediumint(8) UNSIGNED NOT NULL default '0',
    title_match tinyint(1) NOT NULL default '0',
@@ -320,7 +320,7 @@ CREATE TABLE phpbb_search_wordmatch (
 
 # 表：phpbb_sessions
 # 描述：sessions
-CREATE TABLE phpbb_sessions (
+CREATE TABLE IF NOT EXISTS phpbb_sessions (
    session_id char(32) DEFAULT '' NOT NULL,
    session_user_id mediumint(8) DEFAULT '0' NOT NULL,
    session_start int(11) DEFAULT '0' NOT NULL,
@@ -336,7 +336,7 @@ CREATE TABLE phpbb_sessions (
 
 # 表：phpbb_sessions_keys
 # 描述：sessions keys
-CREATE TABLE phpbb_sessions_keys (
+CREATE TABLE IF NOT EXISTS phpbb_sessions_keys (
   key_id varchar(32) DEFAULT '0' NOT NULL,
   user_id mediumint(8) DEFAULT '0' NOT NULL,
   last_ip varchar(8) DEFAULT '0' NOT NULL,
@@ -347,7 +347,7 @@ CREATE TABLE phpbb_sessions_keys (
 
 # 表：phpbb_smilies
 # 描述：表情
-CREATE TABLE phpbb_smilies (
+CREATE TABLE IF NOT EXISTS phpbb_smilies (
    smilies_id smallint(5) UNSIGNED NOT NULL auto_increment,
    code varchar(50),
    smile_url varchar(100),
@@ -357,7 +357,7 @@ CREATE TABLE phpbb_smilies (
 
 # 表：phpbb_topics
 # 描述：帖子的主题信息
-CREATE TABLE phpbb_topics (
+CREATE TABLE IF NOT EXISTS phpbb_topics (
    topic_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    forum_id smallint(8) UNSIGNED DEFAULT '0' NOT NULL,
    topic_title char(60) NOT NULL,
@@ -384,7 +384,7 @@ CREATE TABLE phpbb_topics (
 
 # 表：phpbb_topics_watch
 # 描述：用于帖子回复通知
-CREATE TABLE phpbb_topics_watch (
+CREATE TABLE IF NOT EXISTS phpbb_topics_watch (
   topic_id mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
   user_id mediumint(8) NOT NULL DEFAULT '0',
   notify_status tinyint(1) NOT NULL default '0',
@@ -395,7 +395,7 @@ CREATE TABLE phpbb_topics_watch (
 
 # 表：phpbb_users
 # 描述：会员数据
-CREATE TABLE phpbb_users (
+CREATE TABLE IF NOT EXISTS phpbb_users (
    user_id mediumint(8) NOT NULL,
    user_active tinyint(1) DEFAULT '1',
    username varchar(25) NOT NULL,
@@ -483,7 +483,7 @@ CREATE TABLE phpbb_users (
 
 # 表：phpbb_vote_desc
 # 描述：投票选项、问题
-CREATE TABLE phpbb_vote_desc (
+CREATE TABLE IF NOT EXISTS phpbb_vote_desc (
   vote_id mediumint(8) UNSIGNED NOT NULL auto_increment,
   topic_id mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
   vote_text text NOT NULL,
@@ -495,7 +495,7 @@ CREATE TABLE phpbb_vote_desc (
 
 # 表：phpbb_vote_results
 # 描述：投票的结果
-CREATE TABLE phpbb_vote_results (
+CREATE TABLE IF NOT EXISTS phpbb_vote_results (
   vote_id mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
   vote_option_id tinyint(4) UNSIGNED NOT NULL DEFAULT '0',
   vote_option_text varchar(255) NOT NULL,
@@ -506,7 +506,7 @@ CREATE TABLE phpbb_vote_results (
 
 # 表：phpbb_vote_voters
 # 描述：参与投票的用户
-CREATE TABLE phpbb_vote_voters (
+CREATE TABLE IF NOT EXISTS phpbb_vote_voters (
   vote_id mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
   vote_user_id mediumint(8) NOT NULL DEFAULT '0',
   vote_user_ip char(8) NOT NULL,
@@ -517,7 +517,7 @@ CREATE TABLE phpbb_vote_voters (
 
 # 表：phpbb_words
 # 描述：敏感词
-CREATE TABLE phpbb_words (
+CREATE TABLE IF NOT EXISTS phpbb_words (
    word_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    word char(100) NOT NULL,
    replacement char(100) NOT NULL,
@@ -526,7 +526,7 @@ CREATE TABLE phpbb_words (
 
 # 表：phpbb_attachments_config
 # 描述：附件全局配置
-CREATE TABLE phpbb_attachments_config (
+CREATE TABLE IF NOT EXISTS phpbb_attachments_config (
   config_name varchar(255) NOT NULL,
   config_value varchar(255) NOT NULL,
   PRIMARY KEY (config_name)
@@ -534,7 +534,7 @@ CREATE TABLE phpbb_attachments_config (
 
 # 表：phpbb_forbidden_extensions
 # 描述：禁止的扩展名
-CREATE TABLE phpbb_forbidden_extensions (
+CREATE TABLE IF NOT EXISTS phpbb_forbidden_extensions (
   ext_id mediumint(8) UNSIGNED NOT NULL auto_increment, 
   extension varchar(100) NOT NULL, 
   PRIMARY KEY (ext_id)
@@ -542,7 +542,7 @@ CREATE TABLE phpbb_forbidden_extensions (
 
 # 表：phpbb_extension_groups
 # 描述：小组的设置
-CREATE TABLE phpbb_extension_groups (
+CREATE TABLE IF NOT EXISTS phpbb_extension_groups (
   group_id mediumint(8) NOT NULL auto_increment,
   group_name char(20) NOT NULL,
   cat_id tinyint(2) DEFAULT '0' NOT NULL, 
@@ -555,7 +555,7 @@ CREATE TABLE phpbb_extension_groups (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_extensions
-CREATE TABLE phpbb_extensions (
+CREATE TABLE IF NOT EXISTS phpbb_extensions (
   ext_id mediumint(8) UNSIGNED NOT NULL auto_increment,
   group_id mediumint(8) UNSIGNED DEFAULT '0' NOT NULL,
   extension varchar(100) NOT NULL,
@@ -565,7 +565,7 @@ CREATE TABLE phpbb_extensions (
 
 # 表：phpbb_attachments_desc
 # 描述：附件的信息
-CREATE TABLE phpbb_attachments_desc (
+CREATE TABLE IF NOT EXISTS phpbb_attachments_desc (
   attach_id mediumint(8) UNSIGNED NOT NULL auto_increment,
   physical_filename varchar(255) NOT NULL,
   real_filename varchar(255) NOT NULL,
@@ -583,7 +583,7 @@ CREATE TABLE phpbb_attachments_desc (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_attachments
-CREATE TABLE phpbb_attachments (
+CREATE TABLE IF NOT EXISTS phpbb_attachments (
   attach_id mediumint(8) UNSIGNED DEFAULT '0' NOT NULL, 
   post_id mediumint(8) UNSIGNED DEFAULT '0' NOT NULL, 
   privmsgs_id mediumint(8) UNSIGNED DEFAULT '0' NOT NULL,
@@ -597,7 +597,7 @@ CREATE TABLE phpbb_attachments (
 
 # 表：phpbb_quota_limits
 # 描述：全局配额范围
-CREATE TABLE phpbb_quota_limits (
+CREATE TABLE IF NOT EXISTS phpbb_quota_limits (
   quota_limit_id mediumint(8) unsigned NOT NULL auto_increment,
   quota_desc varchar(20) NOT NULL default '',
   quota_limit bigint(20) unsigned NOT NULL default '0',
@@ -606,7 +606,7 @@ CREATE TABLE phpbb_quota_limits (
 
 # 表：phpbb_attach_quota
 # 描述：附件的配额范围
-CREATE TABLE phpbb_attach_quota (
+CREATE TABLE IF NOT EXISTS phpbb_attach_quota (
   user_id mediumint(8) unsigned NOT NULL default '0',
   group_id mediumint(8) unsigned NOT NULL default '0',
   quota_type smallint(2) NOT NULL default '0',
@@ -616,7 +616,7 @@ CREATE TABLE phpbb_attach_quota (
 
 # 表：phpbb_album
 # 描述：相册
-CREATE TABLE phpbb_album (
+CREATE TABLE IF NOT EXISTS phpbb_album (
    pic_id int(11) UNSIGNED NOT NULL auto_increment,
    pic_filename varchar(255) NOT NULL,
    pic_thumbnail varchar(255),
@@ -638,7 +638,7 @@ CREATE TABLE phpbb_album (
 
 # 表：phpbb_album_rate
 # 描述：相册的评价率
-CREATE TABLE phpbb_album_rate (
+CREATE TABLE IF NOT EXISTS phpbb_album_rate (
    rate_pic_id int(11) UNSIGNED NOT NULL,
    rate_user_id mediumint(8) NOT NULL,
    rate_user_ip char(8) NOT NULL,
@@ -651,7 +651,7 @@ CREATE TABLE phpbb_album_rate (
 
 # 表：phpbb_album_comment
 # 描述：相册的评价信息
-CREATE TABLE phpbb_album_comment (
+CREATE TABLE IF NOT EXISTS phpbb_album_comment (
    comment_id int(11) UNSIGNED NOT NULL auto_increment,
    comment_pic_id int(11) UNSIGNED NOT NULL,
    comment_user_id mediumint(8) NOT NULL,
@@ -671,7 +671,7 @@ CREATE TABLE phpbb_album_comment (
 
 # 表：phpbb_album_cat
 # 描述：相册的分类
-CREATE TABLE phpbb_album_cat (
+CREATE TABLE IF NOT EXISTS phpbb_album_cat (
    cat_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    cat_title varchar(255) NOT NULL,
    cat_desc text,
@@ -696,7 +696,7 @@ CREATE TABLE phpbb_album_cat (
 
 # 表：phpbb_album_config
 # 描述：相册的全局配置
-CREATE TABLE phpbb_album_config (
+CREATE TABLE IF NOT EXISTS phpbb_album_config (
    config_name varchar(255) NOT NULL,
    config_value varchar(255) NOT NULL,
    PRIMARY KEY (config_name)
@@ -704,7 +704,7 @@ CREATE TABLE phpbb_album_config (
 
 # 表：phpbb_shop_icq
 # 描述：出售的 ICQ 号码信息
-CREATE TABLE phpbb_shop_icq (
+CREATE TABLE IF NOT EXISTS phpbb_shop_icq (
    id mediumint(10) auto_increment,
    icq_number bigint(20) default '0',
    icq_password varchar(255) default NULL,
@@ -714,7 +714,7 @@ CREATE TABLE phpbb_shop_icq (
 
 # 表：phpbb_shop_url
 # 描述：点击链接赚取积分
-CREATE TABLE phpbb_shop_url (
+CREATE TABLE IF NOT EXISTS phpbb_shop_url (
    id mediumint(10) auto_increment,
    url varchar(255) default NULL,
    nazvanie varchar(255) default NULL,
@@ -724,7 +724,7 @@ CREATE TABLE phpbb_shop_url (
 
 # 表：phpbb_shop_sites
 # 描述：用户购买的广告位置
-CREATE TABLE phpbb_shop_sites (
+CREATE TABLE IF NOT EXISTS phpbb_shop_sites (
    id mediumint(10) auto_increment,
    site_url varchar(255) default NULL,
    site_desc varchar(80) default NULL,
@@ -735,7 +735,7 @@ CREATE TABLE phpbb_shop_sites (
 
 # 表：phpbb_medal
 # 描述：奖
-CREATE TABLE phpbb_medal (
+CREATE TABLE IF NOT EXISTS phpbb_medal (
    medal_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    cat_id mediumint(8) UNSIGNED NOT NULL default '1',
    medal_name varchar(40) NOT NULL,
@@ -746,7 +746,7 @@ CREATE TABLE phpbb_medal (
 
 # 表：phpbb_medal_user
 # 描述：获奖的用户
-CREATE TABLE phpbb_medal_user (
+CREATE TABLE IF NOT EXISTS phpbb_medal_user (
    issue_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    medal_id mediumint(8) UNSIGNED NOT NULL,
    user_id mediumint(8) UNSIGNED NOT NULL,
@@ -757,7 +757,7 @@ CREATE TABLE phpbb_medal_user (
 
 # 表：phpbb_medal_mod
 # 描述：版主奖项
-CREATE TABLE phpbb_medal_mod (
+CREATE TABLE IF NOT EXISTS phpbb_medal_mod (
    mod_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    medal_id mediumint(8) UNSIGNED NOT NULL,
    user_id mediumint(8) UNSIGNED NOT NULL,
@@ -766,7 +766,7 @@ CREATE TABLE phpbb_medal_mod (
 
 # 表：phpbb_medal_cat
 # 描述：奖的分类
-CREATE TABLE phpbb_medal_cat (
+CREATE TABLE IF NOT EXISTS phpbb_medal_cat (
    cat_id mediumint(8) UNSIGNED NOT NULL auto_increment,
    cat_title varchar(100) NOT NULL,
    cat_order mediumint(8) UNSIGNED NOT NULL default '0',
@@ -776,7 +776,7 @@ CREATE TABLE phpbb_medal_cat (
 
 # 表：phpbb_rules
 # 描述：规则
-CREATE TABLE phpbb_rules (
+CREATE TABLE IF NOT EXISTS phpbb_rules (
    rule_id int(11) NOT NULL,
    rule_cat_id int(11) NOT NULL,
    rule_name varchar(200) NOT NULL,
@@ -787,7 +787,7 @@ CREATE TABLE phpbb_rules (
 
 # 表：phpbb_rules_cat
 # 描述：规则的分类
-CREATE TABLE phpbb_rules_cat (
+CREATE TABLE IF NOT EXISTS phpbb_rules_cat (
    cat_r_id int(11) NOT NULL,
    cat_r_name varchar(200) NOT NULL,
    PRIMARY KEY (cat_r_id)
@@ -795,7 +795,7 @@ CREATE TABLE phpbb_rules_cat (
 
 # 表：phpbb_topic_collect
 # 描述：帖子收藏
-CREATE TABLE phpbb_topic_collect (
+CREATE TABLE IF NOT EXISTS phpbb_topic_collect (
    id mediumint(8) NOT NULL auto_increment,
    user_id mediumint(8) NOT NULL,
    post_id mediumint(8) NOT NULL,
@@ -804,7 +804,7 @@ CREATE TABLE phpbb_topic_collect (
 
 # 表：phpbb_profile_guestbook 
 # 描述：留言板
-CREATE TABLE phpbb_profile_guestbook (
+CREATE TABLE IF NOT EXISTS phpbb_profile_guestbook (
   gb_id int(10) NOT NULL auto_increment,
   user_id int(10) NOT NULL default '0',
   poster_id int(10) NOT NULL default '0',
@@ -818,7 +818,7 @@ CREATE TABLE phpbb_profile_guestbook (
 
 # 表：phpbb_shout
 # 描述：聊天室
-CREATE TABLE phpbb_shout (
+CREATE TABLE IF NOT EXISTS phpbb_shout (
   shout_id mediumint(8) unsigned NOT NULL auto_increment,
   shout_username varchar(25) NOT NULL,
   shout_user_id mediumint(8) NOT NULL,
@@ -834,7 +834,7 @@ CREATE TABLE phpbb_shout (
 
 # 表：phpbb_styles
 # 描述：风格
-CREATE TABLE phpbb_styles (
+CREATE TABLE IF NOT EXISTS phpbb_styles (
 	style_id mediumint(8) UNSIGNED NOT NULL auto_increment,
 	style_name varchar(64) DEFAULT '' NOT NULL,
 	style_path varchar(64) DEFAULT '' NOT NULL,
@@ -843,7 +843,7 @@ CREATE TABLE phpbb_styles (
 
 # 表：phpbb_pages
 # 描述：自定义页面
-CREATE TABLE phpbb_pages (
+CREATE TABLE IF NOT EXISTS phpbb_pages (
 	page_id mediumint(8) UNSIGNED NOT NULL auto_increment,
 	page_title varchar(255) DEFAULT '' NOT NULL,
 	page_contents text,
@@ -852,13 +852,13 @@ CREATE TABLE phpbb_pages (
 
 # 表：phpbb_index_page
 # 描述：首页排版
-CREATE TABLE phpbb_index_page (
+CREATE TABLE IF NOT EXISTS phpbb_index_page (
 	index_content text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_themes
 # 描述：WEB版的主题
-CREATE TABLE phpbb_themes (
+CREATE TABLE IF NOT EXISTS phpbb_themes (
 	themes_id mediumint(8) UNSIGNED NOT NULL auto_increment, 
 	template_name varchar(30) NOT NULL default '', 
 	style_name varchar(30) NOT NULL default '', 
@@ -907,7 +907,7 @@ CREATE TABLE phpbb_themes (
 
 # 表：phpbb_theme_name
 # 描述：WEB版主题
-CREATE TABLE phpbb_themes_name (
+CREATE TABLE IF NOT EXISTS phpbb_themes_name (
 	themes_id smallint(5) UNSIGNED DEFAULT '0' NOT NULL, 
 	tr_color1_name char(50), 
 	tr_color2_name char(50), 
@@ -944,7 +944,7 @@ CREATE TABLE phpbb_themes_name (
 
 # 表：phpbb_linkexchange
 # 描述：友情链接
-CREATE TABLE phpbb_linkexchange (
+CREATE TABLE IF NOT EXISTS phpbb_linkexchange (
   link_id smallint(8) unsigned NOT NULL default '0',
   link_name varchar(255) NOT NULL default '',
   link_email varchar(255) NOT NULL default '',  
@@ -960,7 +960,7 @@ CREATE TABLE phpbb_linkexchange (
 
 # 表：phpbb_specials
 # 描述：专题
-CREATE TABLE phpbb_specials (
+CREATE TABLE IF NOT EXISTS phpbb_specials (
   special_id mediumint(8) unsigned NOT NULL auto_increment,
   special_name varchar(255) NOT NULL,
   special_forum mediumint(8) NOT NULL,
@@ -969,7 +969,7 @@ CREATE TABLE phpbb_specials (
 
 # 表：phpbb_sign
 # 描述：签到
-CREATE TABLE phpbb_sign (
+CREATE TABLE IF NOT EXISTS phpbb_sign (
   sign_id mediumint(8) unsigned NOT NULL auto_increment,
   sign_user_id mediumint(8) NOT NULL default '-1',
   sign_time int(11) NOT NULL default '0',
@@ -981,7 +981,7 @@ CREATE TABLE phpbb_sign (
 
 # 表：phpbb_lottery
 # 描述：彩票
-CREATE TABLE phpbb_lottery (
+CREATE TABLE IF NOT EXISTS phpbb_lottery (
   id int(10) unsigned NOT NULL auto_increment,
   user_id int(10) NOT NULL,
   PRIMARY KEY  (id),
@@ -990,7 +990,7 @@ CREATE TABLE phpbb_lottery (
 
 # 表：phpbb_lottery_history
 # 描述：彩票中奖记录
-CREATE TABLE phpbb_lottery_history (
+CREATE TABLE IF NOT EXISTS phpbb_lottery_history (
   id int(10) unsigned NOT NULL auto_increment,
   user_id int(10) NOT NULL,
   amount int(10) NOT NULL,
@@ -1002,7 +1002,7 @@ CREATE TABLE phpbb_lottery_history (
 
 # 表：phpbb_bank
 # 描述：银行
-CREATE TABLE phpbb_bank (
+CREATE TABLE IF NOT EXISTS phpbb_bank (
   id int(10) unsigned NOT NULL auto_increment,
   user_id int(10) NOT NULL,
   holding int(10) unsigned default '0',
@@ -1016,14 +1016,14 @@ CREATE TABLE phpbb_bank (
 
 # 表：phpbb_invite
 # 描述：邀请
-CREATE TABLE phpbb_invite (
+CREATE TABLE IF NOT EXISTS phpbb_invite (
   id int(6) NOT NULL auto_increment,
   user_id int(8) NOT NULL,
   ip text NOT NULL,
   PRIMARY KEY  (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE phpbb_deliver (
+CREATE TABLE IF NOT EXISTS phpbb_deliver (
   deliver_id mediumint(8) unsigned NOT NULL auto_increment,
   deliver_poster mediumint(8) NOT NULL default '0',
   deliver_point int(11) NOT NULL default '0',
@@ -1033,7 +1033,7 @@ CREATE TABLE phpbb_deliver (
   PRIMARY KEY (deliver_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE phpbb_partake_deliver (
+CREATE TABLE IF NOT EXISTS phpbb_partake_deliver (
   partake_id mediumint(8) unsigned NOT NULL auto_increment,
   partake_user_id mediumint(8) NOT NULL default '0',
   deliver_id mediumint(8) NOT NULL default '0',
