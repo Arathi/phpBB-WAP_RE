@@ -166,12 +166,13 @@ dl.codebox code {
 **/
 .copy { 
 	background:#12A3EB url("./../images/bg_header.gif") repeat-x 0 0; 
-	color:#FFFFFF; 
-	margin-bottom:4px; 
-	padding: 7px 5px 0 53px;
+	color:#ffffff; 
+	margin-bottom:44px; 
+	padding: 7px 5px 5px 0px;
 	-khtml-border-radius: 8px; 
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px; 
 	border-radius: 8px;
 	border-radius:6px;
+    text-align: center;
 }

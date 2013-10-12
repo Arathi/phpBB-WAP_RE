@@ -40,7 +40,7 @@ if ( isset($_POST['agree']) )
 	?>
 	</form>
 	</div>
-	<div class="copy">Powered by <a href="http://phpbb-wap.com/">phpBB-WAP v4 LTS测试版</div>
+	<div class="copy">Powered by <a href="http://phpbb-wap.com/">phpBB-WAP v4 LTS</div>
 	</div>
 	</body>
 	</html>
