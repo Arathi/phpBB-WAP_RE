@@ -547,7 +547,6 @@ if ( isset($_POST['agree']) )
 					{
 						if (trim($sql_query[$i]) != '')
 						{
-                            //echo $sql_query[$i];
 							if (!($result = $db->sql_query($sql_query[$i])))
 							{
 								$error = $db->sql_error();
@@ -572,7 +571,6 @@ if ( isset($_POST['agree']) )
 							if (!($result = $db->sql_query($sql_query[$i])))
 							{
 								$error = $db->sql_error();
-				
 								page_header($lang['Install'], '');
 								page_error($lang['Installer_Error'], $lang['Install_db_error'] . '<br />' . $error['message'] . '<br/>' . $sql_query[$i]);
 								page_footer();
@@ -594,7 +592,6 @@ if ( isset($_POST['agree']) )
 							if (!($result = $db->sql_query($sql_query[$i])))
 							{
 								$error = $db->sql_error();
-
 								page_header($lang['Install'], '');
 								page_error($lang['Installer_Error'], $lang['Install_db_error'] . '<br />' . $error['message'] . '<br/>' . $sql_query[$i]);
 								page_footer();

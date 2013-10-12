@@ -129,8 +129,14 @@ if( isset($HTTP_POST_VARS['login']) || isset($HTTP_GET_VARS['login']) || isset($
 						$template->assign_vars(array(
 							'META' => '<meta http-equiv="refresh" content="3;url=' . append_sid($url, true) . '">')
 						);
-
-				 		message_die(GENERAL_MESSAGE, '欢迎您：' . $row['username'] . '！<br />上次访问：' . $posl_visit . '<br />浏览器：' . strtok($user_agent,'/') . '<br />IP地址：' . $client_ip . '<br /><a href="' . append_sid($url, true) . '">&lt;--快速进入</a><br/>');
+                        
+                        include_once($phpbb_root_path . 'includes/browser.'.$phpEx);
+                        $browser = new Browser();
+                        $browser_type = $browser->getBrowser();
+                        $browser_version = $browser->getVersion();
+                        $browser_string = $browser_type . " " . $browser_version;
+                        
+				 		message_die(GENERAL_MESSAGE, '欢迎您：' . $row['username'] . '！<br />上次访问：' . $posl_visit . '<br />浏览器：' . $browser_string . '<br />IP地址：' . $client_ip . '<br /><a href="' . append_sid($url, true) . '">&lt;--快速进入</a><br/>');
 					}
 					else
 					{
