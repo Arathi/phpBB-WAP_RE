@@ -13,7 +13,7 @@ include($phpbb_root_path . 'common.'.$phpEx);
 $userdata = session_pagestart($user_ip, PAGE_REMOVEDIR);
 init_userprefs($userdata);
 // 网页的头部
-include($phpbb_root_path . 'includes/page_header.'.$phpEx);
+include($phpbb_root_path . 'includes/page_header.' . $phpEx);
 
 function random_string($length, $max=FALSE)
 {
@@ -22,7 +22,7 @@ function random_string($length, $max=FALSE)
         $length = mt_rand($length, $max);
     }
     $output = '';
-    
+
     for ($i=0; $i<$length; $i++)
     {
         $which = mt_rand(0,2);
@@ -53,21 +53,26 @@ function total_delete($arg)
             $handle = opendir($arg);
             while($aux = readdir($handle)) 
             {
-                if ($aux != "." && $aux != "..") 
+                if ($aux != "." && $aux != "..")
                     total_delete($arg."/".$aux);
             }
             @closedir($handle);
             rmdir($arg);
-        } 
+        }
         else unlink($arg);
     }
 }
 
-if (isset($_POST['action']))
+$action = "";
+if ( isset($_POST['action']) ) $action = $_POST['action'];
+else if ( isset($_GET['action']) ) $action = $_GET['action'];
+else unset($action);
+
+if (isset($action))
 {
 	$pathname = dirname(__FILE__);
 	$pathdir = dirname($pathname);
-	$action = isset($_POST['action'])?$_POST['action']:$_GET['action'];
+	$newdirname=isset($_POST['newdirname']) ? $_POST['newdirname'] : "";
 	if ($action=='remove')
 	{
 		total_delete($pathname);
@@ -82,7 +87,7 @@ if (isset($_POST['action']))
 	}
 	else if ($action=='rename')
 	{
-		$newdirname=$_POST['newdirname'];
+        if ($newdirname=="") $newdirname = random_string(mt_rand(8,32));
 		$success = rename($pathname, "$pathdir/".$newdirname);
 		if ($success)
         {
@@ -97,11 +102,11 @@ if (isset($_POST['action']))
 }
 else
 {
-	echo "请将install目录<a href=''>改名</a>或<a href=''>删除</a><br/>";
+	$random_dir_name = random_string(mt_rand(8,32));
+	echo "请将install目录<a href='./remove.php?action=rename&newdirname=" . $random_dir_name . "'>改名</a>或<a href='./remove.php?action=remove'>删除</a><br/>";
 	echo "<form action='' method='post'>";
 	echo "<input type='radio' name='action' value='remove' />删除<br/>";
 	echo "<input type='radio' name='action' value='rename' checked />改名为";
-	$random_dir_name = random_string(mt_rand(8,32));
 	echo "<input type='text' name='newdirname' value='$random_dir_name' /><br/>";
 	echo "<input type='submit' name='submit' value='提交' />";
 	echo "</form>";
