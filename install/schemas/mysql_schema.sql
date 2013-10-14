@@ -37,60 +37,60 @@ CREATE TABLE IF NOT EXISTS phpbb_user_group (
 # 表：phpbb_groups
 # 描述：全局小组
 CREATE TABLE IF NOT EXISTS phpbb_groups (
-   group_id mediumint(8) NOT NULL auto_increment,
-   group_type tinyint(4) DEFAULT '1' NOT NULL,
-   group_name varchar(40) DEFAULT '' NOT NULL,
-   group_description varchar(255) NOT NULL,
-   group_moderator mediumint(8) DEFAULT '0' NOT NULL,
-   group_single_user tinyint(1) DEFAULT '1' NOT NULL,
-   guestbook_enable TINYINT(1) DEFAULT '1' NOT NULL,
-   group_logo varchar(100) DEFAULT '' NOT NULL,
-   PRIMARY KEY (group_id),
-   KEY group_single_user (group_single_user)
+    group_id mediumint(8) NOT NULL auto_increment,
+    group_type tinyint(4) DEFAULT '1' NOT NULL,
+    group_name varchar(40) DEFAULT '' NOT NULL,
+    group_description varchar(255) NOT NULL,
+    group_moderator mediumint(8) DEFAULT '0' NOT NULL,
+    group_single_user tinyint(1) DEFAULT '1' NOT NULL,
+    guestbook_enable tinyint(1) DEFAULT '1' NOT NULL,
+    group_logo varchar(100) DEFAULT '' NOT NULL,
+    PRIMARY KEY (group_id),
+    KEY group_single_user (group_single_user)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_groups_guestbook
 # 描述：全局小组留言板
 CREATE TABLE IF NOT EXISTS phpbb_groups_guestbook (
-   gb_id int(10) NOT NULL auto_increment,
-   group_id int(10) NOT NULL default '0',
-   poster_id int(10) NOT NULL default '0',
-   bbcode varchar(64) NOT NULL default '',
-   gb_time int(10) NOT NULL default '0',
-   message text NOT NULL,
-   PRIMARY KEY  (gb_id)
+    gb_id int(10) NOT NULL auto_increment,
+    group_id int(10) NOT NULL default '0',
+    poster_id int(10) NOT NULL default '0',
+    bbcode varchar(64) NOT NULL default '',
+    gb_time int(10) NOT NULL default '0',
+    message text NOT NULL,
+    PRIMARY KEY  (gb_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_banlist
 # 描述：黑名单列表
 CREATE TABLE IF NOT EXISTS phpbb_banlist (
-   ban_id mediumint(8) UNSIGNED NOT NULL auto_increment,
-   ban_userid mediumint(8) NOT NULL,
-   ban_ip char(8) NOT NULL,
-   ban_email varchar(255),
-   PRIMARY KEY (ban_id),
-   KEY ban_ip_user_id (ban_ip, ban_userid)
+    ban_id mediumint(8) UNSIGNED NOT NULL auto_increment,
+    ban_userid mediumint(8) NOT NULL,
+    ban_ip char(8) NOT NULL,
+    ban_email varchar(255),
+    PRIMARY KEY (ban_id),
+    KEY ban_ip_user_id (ban_ip, ban_userid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_bookmarks
 # 描述：书签
 CREATE TABLE IF NOT EXISTS phpbb_bookmarks (
-   topic_id mediumint(8) unsigned NOT NULL default '0',
-   user_id mediumint(8) NOT NULL default '0',
-   start mediumint(8) not null DEFAULT '0',
-   KEY topic_id (topic_id),
-   KEY user_id (user_id)
+    topic_id mediumint(8) unsigned NOT NULL default '0',
+    user_id mediumint(8) NOT NULL default '0',
+    start mediumint(8) NOT NULL DEFAULT '0',
+    KEY topic_id (topic_id),
+    KEY user_id (user_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_categories
 # 描述：论坛分类
 CREATE TABLE IF NOT EXISTS phpbb_categories (
-   cat_id mediumint(8) UNSIGNED NOT NULL auto_increment,
-   cat_title varchar(100),
-   cat_icon varchar(100),
-   cat_order mediumint(8) UNSIGNED NOT NULL,
-   PRIMARY KEY (cat_id),
-   KEY cat_order (cat_order)
+    cat_id mediumint(8) UNSIGNED NOT NULL auto_increment,
+    cat_title varchar(100),
+    cat_icon varchar(100),
+    cat_order mediumint(8) UNSIGNED NOT NULL,
+    PRIMARY KEY (cat_id),
+    KEY cat_order (cat_order)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_config
@@ -101,32 +101,32 @@ CREATE TABLE IF NOT EXISTS phpbb_config (
     PRIMARY KEY (config_name)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-# 表：phpbb_config
+# 表：phpbb_confirm
 # 描述：表单提交确认处理
 CREATE TABLE IF NOT EXISTS phpbb_confirm (
-  confirm_id char(32) DEFAULT '' NOT NULL,
-  session_id char(32) DEFAULT '' NOT NULL,
-  code char(6) DEFAULT '' NOT NULL, 
-  PRIMARY KEY  (session_id,confirm_id)
+    confirm_id char(32) DEFAULT '' NOT NULL,
+    session_id char(32) DEFAULT '' NOT NULL,
+    code char(6) DEFAULT '' NOT NULL, 
+    PRIMARY KEY  (session_id,confirm_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_disallow
 # 描述：封禁
 CREATE TABLE IF NOT EXISTS phpbb_disallow (
-   disallow_id mediumint(8) UNSIGNED NOT NULL auto_increment,
-   disallow_username varchar(25) DEFAULT '' NOT NULL,
-   PRIMARY KEY (disallow_id)
+    disallow_id mediumint(8) UNSIGNED NOT NULL auto_increment,
+    disallow_username varchar(25) DEFAULT '' NOT NULL,
+    PRIMARY KEY (disallow_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_forum_prune
 # 描述：论坛的相关值
 CREATE TABLE IF NOT EXISTS phpbb_forum_prune (
-   prune_id mediumint(8) UNSIGNED NOT NULL auto_increment,
-   forum_id smallint(5) UNSIGNED NOT NULL,
-   prune_days smallint(5) UNSIGNED NOT NULL,
-   prune_freq smallint(5) UNSIGNED NOT NULL,
-   PRIMARY KEY(prune_id),
-   KEY forum_id (forum_id)
+    prune_id mediumint(8) UNSIGNED NOT NULL auto_increment,
+    forum_id smallint(5) UNSIGNED NOT NULL,
+    prune_days smallint(5) UNSIGNED NOT NULL,
+    prune_freq smallint(5) UNSIGNED NOT NULL,
+    PRIMARY KEY(prune_id),
+    KEY forum_id (forum_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 # 表：phpbb_forums
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS phpbb_forums (
    forum_status tinyint(4) DEFAULT '0' NOT NULL,
    forum_order mediumint(8) UNSIGNED DEFAULT '1' NOT NULL,
    forum_posts mediumint(8) UNSIGNED DEFAULT '0' NOT NULL,
-   forum_postcount TINYINT(1) DEFAULT '1' NOT NULL,
+   forum_postcount tinyint(1) DEFAULT '1' NOT NULL,
    forum_topics mediumint(8) UNSIGNED DEFAULT '0' NOT NULL,
    forum_last_post_id mediumint(8) UNSIGNED DEFAULT '0' NOT NULL,
    prune_next int(11),
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS phpbb_forums (
    auth_vote tinyint(2) DEFAULT '0' NOT NULL,
    auth_pollcreate tinyint(2) DEFAULT '0' NOT NULL,
    auth_attachments tinyint(2) DEFAULT '0' NOT NULL,
-   auth_download TINYINT(2) DEFAULT '0' NOT NULL,
+   auth_download tinyint(2) DEFAULT '0' NOT NULL,
    forum_money int(12) default '0',
    PRIMARY KEY (forum_id),
    KEY forums_order (forum_order),
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS phpbb_posts (
    post_edit_count smallint(5) UNSIGNED DEFAULT '0' NOT NULL,
    post_reviews smallint(8) unsigned NOT NULL default 0,
    post_locked tinyint(1) unsigned NOT NULL default 0,
-   post_attachment TINYINT(1) DEFAULT '0' NOT NULL,
+   post_attachment tinyint(1) DEFAULT '0' NOT NULL,
    PRIMARY KEY (post_id),
    KEY forum_id (forum_id),
    KEY topic_id (topic_id),
