@@ -1020,10 +1020,34 @@ class attach_parent
 			$file = $HTTP_POST_FILES['fileupload']['tmp_name'];
 			$this->type = $HTTP_POST_FILES['fileupload']['type'];
 
-			if ($importurl == NULL && isset($HTTP_POST_FILES['fileupload']['size']) && $HTTP_POST_FILES['fileupload']['size'] == 0)
-			{
-				message_die(GENERAL_ERROR, 'Tried to upload empty file');
-			}
+			// if ($importurl == NULL && isset($HTTP_POST_FILES['fileupload']['size']) && $HTTP_POST_FILES['fileupload']['size'] == 0)
+			// {
+				// message_die(GENERAL_ERROR, 'Tried to upload empty file');
+			// }
+            if ($importurl == NULL && isset($HTTP_POST_FILES['fileupload']['error']) )
+            {
+                $uploadErrorCode=$HTTP_POST_FILES['fileupload']['error'];
+                if ($uploadErrorCode==1)
+                {
+                    message_die(GENERAL_ERROR, '上传文件大小超过服务器最大文件限制');
+                }
+                else if ($uploadErrorCode==2)
+                {
+                    message_die(GENERAL_ERROR, '上传文件大小超过当前级别限制');
+                }
+                else if ($uploadErrorCode==3)
+                {
+                    message_die(GENERAL_ERROR, '该文件只有部分被上传');
+                }
+                else if ($uploadErrorCode==4)
+                {
+                    message_die(GENERAL_ERROR, '改文件未被上传');
+                }
+                else if ($uploadErrorCode>=5)
+                {
+                    message_die(GENERAL_ERROR, '文件上传时发生未知错误');
+                }
+            }
 
 			$this->type = (strstr($this->type, '; name')) ? str_replace(strstr($this->type, '; name'), '', $this->type) : $this->type;
 			$this->type = strtolower($this->type);
