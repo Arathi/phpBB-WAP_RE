@@ -53,7 +53,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('avatar_path','imag
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('avatar_gallery_path','images/avatars/gallery');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('smilies_path','images/smiles');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_style','1');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_dateformat','M月d日, G:i');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_dateformat','M月d日 G:i');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('board_timezone','8');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('prune_enable','1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('privmsg_disable','0');
@@ -163,7 +163,7 @@ INSERT INTO phpbb_forums (forum_id, forum_name, forum_desc, cat_id, forum_order,
 
 #-- 会员信息
 INSERT INTO phpbb_users (user_id, username, user_level, user_regdate, user_password, user_email, user_icq, user_website, user_occ, user_from, user_interests, user_sig, user_viewemail, user_aim, user_yim, user_msnm, user_posts, user_attachsig, user_allowsmile, user_allowhtml, user_allowbbcode, user_allow_pm, user_notify_pm, user_allow_viewonline, user_rank, user_avatar, user_lang, user_timezone, user_dateformat, user_actkey, user_newpasswd, user_active) VALUES ( -1, '匿名用户', 0, 0, '', '', '', '', '', '', '', '', 0, '', '', '', 0, 0, 1, 1, 1, 0, 1, 1, NULL, '', '', 0, '', '', '', 0);
-INSERT INTO phpbb_users (user_id, username, user_level, user_regdate, user_password, user_email, user_icq, user_website, user_occ, user_from, user_interests, user_sig, user_viewemail, user_aim, user_yim, user_msnm, user_posts, user_attachsig, user_allowsmile, user_allowhtml, user_allowbbcode, user_allow_pm, user_notify_pm, user_popup_pm, user_allow_viewonline, user_rank, user_avatar, user_lang, user_timezone, user_dateformat, user_actkey, user_newpasswd, user_active) VALUES ( 1, 'admin', 1, 0, '202cb962ac59075b964b07152d234b70', 'admin@yourdomain.com', '', '', '', '', '', '', 1, '', '', '', 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, '', 'chinese', 0, 'd M, G:i', '', '', 1);
+INSERT INTO phpbb_users (user_id, username, user_level, user_regdate, user_password, user_email, user_icq, user_website, user_occ, user_from, user_interests, user_sig, user_viewemail, user_aim, user_yim, user_msnm, user_posts, user_attachsig, user_allowsmile, user_allowhtml, user_allowbbcode, user_allow_pm, user_notify_pm, user_popup_pm, user_allow_viewonline, user_rank, user_avatar, user_lang, user_timezone, user_dateformat, user_actkey, user_newpasswd, user_active) VALUES ( 1, 'admin', 1, 0, '202cb962ac59075b964b07152d234b70', 'admin@yourdomain.com', '', '', '', '', '', '', 1, '', '', '', 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, '', 'chinese', 0, 'M月d日 G:i', '', '', 1);
 
 #-- 等级
 INSERT INTO phpbb_ranks (rank_id, rank_title, rank_min, rank_special, rank_image) VALUES (1, '超级管理员', -1, 1, NULL);
@@ -385,6 +385,8 @@ INSERT INTO phpbb_extensions VALUES (19, 5, 'wav', '');
 INSERT INTO phpbb_extensions VALUES (20, 5, 'midi', '');
 INSERT INTO phpbb_extensions VALUES (21, 5, 'mid', '');
 INSERT INTO phpbb_extensions VALUES (22, 3, 'bmp', '');
+INSERT INTO phpbb_extensions VALUES (23, 4, 'gz', '');
+INSERT INTO phpbb_extensions VALUES (24, 4, '7z', '');
 
 #-- 限制设置
 INSERT INTO phpbb_quota_limits (quota_limit_id, quota_desc, quota_limit) VALUES (1, '低', 262144);
