@@ -647,7 +647,7 @@ elseif (isset($HTTP_GET_VARS['url']))
 				header('Location: ' . $url);
 				exit;
 			} else {
-				$ost = time() - ($userdata['time_last_click'] + $board_config['time_click']);
+				$ost = ($userdata['time_last_click'] + $board_config['time_click']) - time();
 				message_die(GENERAL_MESSAGE, '请勿重复点击，距离第二次点击还剩 ' . $ost . ' 秒！');
 			}
 		} else {

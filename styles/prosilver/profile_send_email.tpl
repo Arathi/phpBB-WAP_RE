@@ -2,7 +2,7 @@
 {ERROR_BOX}</div>
 <form action="{S_POST_ACTION}" method="post" name="post">
 <div class="catSides">
-Отправка e-mail
+发送E-Mail
 </div>
 <div class="row1">
 {L_SUBJECT}:<br/>
