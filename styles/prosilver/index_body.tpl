@@ -19,7 +19,7 @@
 	</div>
 <!-- END announcement -->
 {INDEX_PAGE_BODY}
-<div class="navbar">简版|<a href="web/index.php">电脑版</a></div>
+<!-- <div class="navbar">简版|<a href="web/index.php">电脑版</a></div> -->
 <!-- BEGIN switch_admin_link -->
 	<div class="row1">[{ADMIN_LINK} == {EDIT_INDEX}]</div>
 <!-- END switch_admin_link -->
