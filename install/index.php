@@ -4,19 +4,23 @@
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=2.0"/>
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />			
-<title>中文phpBB-WAP</title>
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>中文phpBB-WAP v4 LTS</title>
 <link rel="shortcut icon" href="http://phpbb-wap.com/favicon.ico" />
-<link rel="stylesheet" href="../styles/prosilver/theme/prosilver.css" type="text/css" />	
+<link rel="stylesheet" href="../styles/prosilver/theme/prosilver.css" type="text/css" />
 </head>
 <body>
+    <?php
+        header('Location: ' . './install.' . $phpEx);
+        exit;
+    ?>
 	<div class="wrap">
 		<div class="cat" align="center"><a href="http://phpbb-wap.com"><img src="http://phpbb-wap.com/images/logo.png" /></a></div>
 		<div class="row1" align="center"><h2>安装 or 更新</h2></div>
 		<div class="navbar">请选择安装或者升级！（仅支持v4测试版升级至正式版，v2的用户请升级到v4测试版再升级！）</div>
 		<div class="catSides" align="center">请选择？</div>
 		<div class="row_easy"><a href="install.php">全新安装</a></div>
-		<div class="row_hard"><a href="update.php">升级程序</div>
+		<!-- <div class="row_hard"><a href="update.php">升级程序</div> -->
 	</div>
 </body>
 </html>
