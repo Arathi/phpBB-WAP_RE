@@ -53,8 +53,8 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('avatar_path','imag
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('avatar_gallery_path','images/avatars/gallery');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('smilies_path','images/smiles');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_style','1');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_dateformat','d M, G:i');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('board_timezone','4');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_dateformat','M月d日, G:i');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('board_timezone','8');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('prune_enable','1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('privmsg_disable','0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('gzip_compress','0');
