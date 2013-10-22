@@ -129,8 +129,13 @@ if( isset($HTTP_POST_VARS['login']) || isset($HTTP_GET_VARS['login']) || isset($
 						$template->assign_vars(array(
 							'META' => '<meta http-equiv="refresh" content="3;url=' . append_sid($url, true) . '">')
 						);
-
-				 		message_die(GENERAL_MESSAGE, '欢迎您：' . $row['username'] . '！<br />上次访问：' . $posl_visit . '<br />浏览器：' . strtok($user_agent,'/') . '<br />IP地址：' . $client_ip . '<br /><a href="' . append_sid($url, true) . '">&lt;--快速进入</a><br/>');
+                        $login_infomation = '欢迎您：' . $row['username'] . '！<br />';
+                        if ( $row['user_lastvisit'] != 0 )
+                            $login_infomation .='上次访问：' . $posl_visit . '<br />';
+                        $login_infomation .='浏览器：' . strtok($user_agent,'/') . '<br />';
+                        $login_infomation .='IP地址：' . $client_ip . '<br />';
+                        $login_infomation .='<a href="' . append_sid($url, true) . '">&lt;--快速进入</a><br/>';
+				 		message_die(GENERAL_MESSAGE, $login_infomation);
 					}
 					else
 					{
