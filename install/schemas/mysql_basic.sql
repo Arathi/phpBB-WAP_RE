@@ -181,7 +181,7 @@ INSERT INTO phpbb_user_group (group_id, user_id, user_pending) VALUES (2, 1, 0);
 INSERT INTO phpbb_topics (topic_id, topic_title, topic_poster, topic_time, topic_views, topic_replies, forum_id, topic_status, topic_type, topic_vote, topic_first_post_id, topic_last_post_id) VALUES (1, '欢迎使用phpBB-WAP！', 1, '0', 0, 0, 1, 0, 0, 0, 1, 1);
 
 #-- 帖子
-INSERT INTO phpbb_posts (post_id, topic_id, forum_id, poster_id, post_time, post_username, poster_ip) VALUES (1, 1, 1, 1, 0, NULL, '7F000001');
+INSERT INTO phpbb_posts (post_id, topic_id, forum_id, poster_id, post_time, post_username, poster_ip) VALUES (1, 1, 1, 1, UNIX_TIMESTAMP(now()), NULL, '7F000001');
 INSERT INTO phpbb_posts_text (post_id, post_subject, post_text) VALUES (1, NULL, '您好！这是一个测试的帖子，当你看到这个帖子时说明程序已经安装成功！假如您不喜欢这个帖子，您可以删除、移动或修改这个帖子。感谢您使用phpBB-WAP！');
 
 #-- 表情
