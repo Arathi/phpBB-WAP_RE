@@ -292,7 +292,7 @@ include('./page_footer_admin.'.$phpEx);
 			}
 		}
 	}
-	message_die(GENERAL_MESSAGE, 'Юзеры отправились фтопку');
+	message_die(GENERAL_MESSAGE, $lang['User_deleted']);
 }
 
 ?>
