@@ -21,17 +21,17 @@ body {
 * a 标签的一些属性
 **/
 a:link,a:active,a:visited { 
-	color: #e2d2f2;
+	color: #BBBBBB;
 	text-decoration: none;
 }
 a:hover {
 	text-decoration: none; 
-	color: #d5501d; 
+	color: #666666; 
 	position: relative;
 	top: 1px; 
 }
 a.cattitle { 
-	color: #e0822f;
+	color: #888888;
 	text-decoration: none;
 }
 a.buttom { 
@@ -57,7 +57,7 @@ a.buttom {
 * cat 标签
 **/
 div.cat {
-	background:#050000 repeat-x 0 0;
+	background:#050000 url("./../images/cat.gif") repeat-x 0 0;
 	color:#FFFFFF;
 	margin-bottom:4px;
 	padding:5px 
@@ -67,7 +67,7 @@ div.cat {
 * 导航栏
 **/
 .navbar {
-	background-color:#6F6160;
+	background-color:#444444;
 	margin-bottom:4px;
 	padding:5px
 }
@@ -76,15 +76,15 @@ div.cat {
 * 标题栏
 **/
 .catSides {
-	background:#1a1a1a repeat-x 0 0;
-	color:#e0822f;
+	background:#1a1a1a url(./../images/catsides.gif) repeat-x 0 0;
+	color:#888888;
 	font-weight:bold;
 	margin-bottom:1px;
 	padding:5px 
 }
 
 .catSides a {
-	color: #AFAEA5; 
+	color: #888888; 
 	text-decoration: none;
 }
 
@@ -112,7 +112,7 @@ span.genmed {
 	font-size : 11px;
 	}
 span.cattitle {
-	color: #FFFFFF;
+	color: #888888;
 	font-weight: bold; 
 	font-size: 12px; 
 }
@@ -158,7 +158,7 @@ dl.codebox code {
 * 底部的版权
 **/
 .copy { 
-	background:#0A0000 repeat-x 0 0; 
+	background:#0A0000 url("./../images/cat.gif") repeat-x 0 0; 
 	color:#FFFFFF; 
 	margin-bottom:4px; 
 	padding: 7px 5px 0 53px;

@@ -434,6 +434,7 @@ INSERT INTO phpbb_profile_guestbook VALUES (1, 1, 1, 'dd7850a9d8', 1119444611, '
 #-- 风格
 INSERT INTO phpbb_styles (style_id, style_name, style_path) VALUES (1, '默认风格', 'prosilver');
 INSERT INTO phpbb_styles (style_id, style_name, style_path) VALUES (2, '新春风格', 'NewYear');
+INSERT INTO phpbb_styles (style_id, style_name, style_path) VALUES (3, '万圣节风格', 'Halloween');
 
 #-- 自定义网页排版
 INSERT INTO phpbb_pages (page_id, page_title, page_contents) VALUES (1, '网页标题', '网页内容');
