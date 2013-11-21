@@ -59,7 +59,7 @@ if( $is_mod )
 
 	if ( !empty($add_name) && $mode == 'add' )
 	{
-		$sql = "INSERT INTO phpbb_specials (special_name, special_forum)
+		$sql = "INSERT INTO " . SPECIAL_TABLE . "(special_name, special_forum)
 			VALUES ('$add_name', $forum_id)";
 		if ( !($result = $db->sql_query($sql)) )
 		{
@@ -74,7 +74,7 @@ if( $is_mod )
 		include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 		
 		$sql = "SELECT forum_id, forum_name 
-			FROM " . $table_prefix . "forums 
+			FROM " . FORUMS_TABLE . " 
 			WHERE forum_id = " . $forum_id;
 
 		if ( !($result = $db->sql_query($sql)) )

@@ -53,7 +53,7 @@ include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 
 // 得到该论坛的专题总数
 $sql = "SELECT special_id 
-	FROM " . $table_prefix . "specials 
+	FROM " . SPECIAL_TABLE . " 
 	WHERE special_forum = " . $forum_id;
 
 if ( !($result = $db->sql_query($sql)) )
@@ -64,7 +64,7 @@ $total_specials_id = $db->sql_numrows($result);
 
 // 查询xx论坛的专题
 $sql = "SELECT * 
-	FROM " . $table_prefix . "specials 
+	FROM " . SPECIAL_TABLE . " 
 	WHERE special_forum = " . $forum_id . "
 	LIMIT $start, " . $board_config['posts_per_page'];
 	;

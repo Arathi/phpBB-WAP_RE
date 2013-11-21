@@ -47,7 +47,7 @@ else
 }
 
 $sql = "SELECT sign_id 
-	FROM " . $table_prefix . "sign";
+	FROM " . SIGN_TABLE;
 	
 if ( !$result = $db->sql_query($sql) )
 {
@@ -59,7 +59,7 @@ $total_all_sign = $db->sql_numrows($result);
 $pagination = ( $total_all_sign <= 0 ) ? '' : generate_pagination("index.$phpEx?sign=all", $total_all_sign, $board_config['posts_per_page'], $start);
 
 $sql = "SELECT s.*, u.user_id, u.username
-	FROM " . $table_prefix . "sign s, " . USERS_TABLE . " u
+	FROM " . SIGN_TABLE . " s, " . USERS_TABLE . " u
 	WHERE u.user_id = s.sign_user_id
 	ORDER BY s.sign_id DESC
 	LIMIT $start, " . $board_config['posts_per_page'];
@@ -94,7 +94,7 @@ for($i = 0; $i < $total_sign_rows; $i++)
 date_default_timezone_set('PRC');
 $lingchen = strtotime('today'); 
 $sql = "SELECT * 
-   FROM " . $table_prefix . "sign 
+   FROM " . SIGN_TABLE . " 
    WHERE sign_user_id = " . $userdata['user_id'] . " 
       AND sign_time > $lingchen";
 
@@ -119,7 +119,7 @@ else
 	{
 		if ( $user_id && $time && $talk )
 		{
-			$sql = "INSERT INTO phpbb_sign (sign_user_id, sign_time, sign_talk) 
+			$sql = "INSERT INTO " . SIGN_TABLE . "(sign_user_id, sign_time, sign_talk) 
 				VALUES (" . str_replace("\'", "''", $user_id) . ", " . str_replace("\'", "''", $time) . ", '" . str_replace("\'", "''", $talk) . "')";
 			if ( !($result = $db->sql_query($sql)) )
 			{

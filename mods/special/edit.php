@@ -60,7 +60,7 @@ if( $is_mod )
 	
 	if( $confirm && !empty($new_name))
 	{	
-		$sql = "UPDATE phpbb_specials 
+		$sql = "UPDATE " . SPECIAL_TABLE . " 
 			SET special_name = '$new_name'
 			WHERE special_id = $special_id";
 		if ( !($result = $db->sql_query($sql)) )
@@ -77,7 +77,7 @@ if( $is_mod )
 		
 		
 		$sql = "SELECT special_name
-			FROM " . $table_prefix . "specials 
+			FROM " . SPECIAL_TABLE . " 
 			WHERE special_id = $special_id";
 		if ( !($result = $db->sql_query($sql)) )
 		{
