@@ -74,7 +74,7 @@ if( $is_mod )
 		include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 		
 		$sql = "SELECT forum_id, forum_name 
-			FROM phpbb_forums 
+			FROM " . $table_prefix . "forums 
 			WHERE forum_id = " . $forum_id;
 
 		if ( !($result = $db->sql_query($sql)) )

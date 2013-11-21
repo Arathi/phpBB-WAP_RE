@@ -77,7 +77,7 @@ if( $is_mod )
 		
 		
 		$sql = "SELECT special_name
-			FROM phpbb_specials 
+			FROM " . $table_prefix . "specials 
 			WHERE special_id = $special_id";
 		if ( !($result = $db->sql_query($sql)) )
 		{
@@ -89,7 +89,7 @@ if( $is_mod )
 		}
 
 		$sql = "SELECT forum_id, forum_name 
-			FROM phpbb_forums 
+			FROM " . FORUMS_TABLE . " 
 			WHERE forum_id = " . $forum_id;
 
 		if ( !($result = $db->sql_query($sql)) )

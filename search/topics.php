@@ -99,7 +99,7 @@ for ($i = 0; $i < $total_export_topic; $i++)
 }
 
 $sql = "SELECT forum_id, forum_name 
-	FROM phpbb_forums 
+	FROM " . FORUMS_TABLE . " 
 	WHERE forum_id = " . $forum_id;
 
 if ( !($result = $db->sql_query($sql)) )

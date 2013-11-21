@@ -12,7 +12,7 @@ function special_select($forum_id, $topic_id, $default_special)
 	global $db, $phpEx;
 	
 	$sql = "SELECT special_id, special_name
-		FROM phpbb_specials 
+		FROM " . $table_prefix . "specials 
 		WHERE special_forum = $forum_id";
 	if ( !($result = $db->sql_query($sql)) )
 	{

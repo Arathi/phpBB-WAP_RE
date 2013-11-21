@@ -47,7 +47,7 @@ else
 }
 
 $sql = "SELECT sign_id 
-	FROM phpbb_sign";
+	FROM " . $table_prefix . "sign";
 	
 if ( !$result = $db->sql_query($sql) )
 {
@@ -59,7 +59,7 @@ $total_all_sign = $db->sql_numrows($result);
 $pagination = ( $total_all_sign <= 0 ) ? '' : generate_pagination("index.$phpEx?sign=all", $total_all_sign, $board_config['posts_per_page'], $start);
 
 $sql = "SELECT s.*, u.user_id, u.username
-	FROM phpbb_sign s, phpbb_users u
+	FROM " . $table_prefix . "sign s, " . USERS_TABLE . " u
 	WHERE u.user_id = s.sign_user_id
 	ORDER BY s.sign_id DESC
 	LIMIT $start, " . $board_config['posts_per_page'];
@@ -94,7 +94,7 @@ for($i = 0; $i < $total_sign_rows; $i++)
 date_default_timezone_set('PRC');
 $lingchen = strtotime('today'); 
 $sql = "SELECT * 
-   FROM phpbb_sign 
+   FROM " . $table_prefix . "sign 
    WHERE sign_user_id = " . $userdata['user_id'] . " 
       AND sign_time > $lingchen";
 
