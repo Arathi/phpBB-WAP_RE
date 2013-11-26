@@ -30,7 +30,7 @@ else
 	$start = ($start < 0) ? 0 : $start;
 }
 
-$page_title = 'Смайлики';
+$page_title = "表情";
 include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 
 $template->set_filenames(array(
