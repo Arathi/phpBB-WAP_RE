@@ -469,7 +469,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('lottery_random_sho
 #-- 银行
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankinterest', '2');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankfees', '2');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankpayouttime', '84600');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankpayouttime', '86400');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankname', '虚拟银行');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankopened', 'off');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankholdings', '0');
