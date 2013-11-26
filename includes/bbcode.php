@@ -686,15 +686,17 @@ function smilies_pass($message)
 
 		for ($i = 0; $i < count($smilies); $i++)
 		{
-			$orig[] = "/(?<=.\W|\W.|^\W)" . preg_quote($smilies[$i]['code'], "/") . "(?=.\W|\W.|\W$)/";
-			$repl[] = '<img src="' . $phpbb_root_path . $board_config['smilies_path'] . '/' . $smilies[$i]['smile_url'] . '" alt="' . $smilies[$i]['emoticon'] . '" border="0" />';
+            // 设置匹配表情的正则表达式($orig)与替换后的img标签($repl)
+            //$orig[] = "/(?<=.\W|\W.|^\W)" . preg_quote($smilies[$i]['code'], "/") . "(?=.\W|\W.|\W$)/";
+            $orig[] = "/(?=.*)" . preg_quote($smilies[$i]['code'], "/") . "(?=.*$)/";
+            $repl[] = '<img src="' . $phpbb_root_path . $board_config['smilies_path'] . '/' . $smilies[$i]['smile_url'] . '" alt="' . $smilies[$i]['emoticon'] . '" border="0" />';
 		}
 	}
 
 	if (count($orig))
 	{
 		$max_smiles = abs(intval($board_config['max_smiles_in_message']));// abs() 函数返回一个数的绝对值
-		$message = preg_replace($orig, $repl, ' ' . $message . ' ', $max_smiles);
+		$message = preg_replace($orig, $repl, ' ' . $message . ' ', $max_smiles); //4参数形式
 	}
 	
 	return $message;
