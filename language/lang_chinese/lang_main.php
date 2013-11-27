@@ -482,6 +482,11 @@ $lang['font_huge'] = '巨大';
 $lang['Close_Tags'] = '关闭标签';
 $lang['Styles_tip'] = '提示: 这些风格设置可以快速地应到指定的文字当中';
 
+$lang['upload_error_filesize_limit'] = '上传文件大小超过服务器最大文件限制';
+$lang['upload_error_formpost_limit'] = '上传文件大小超过当前级别限制';
+$lang['upload_error_part'] = '该文件只有部分被上传';
+$lang['upload_error_nofile'] = '改文件未被上传';
+$lang['upload_error_unknown'] = '文件上传时发生未知错误';
 
 //
 // 信息 页面

@@ -49,7 +49,7 @@ if ( empty($action) )
 	);
 
 	$sql = "SELECT sum(holding) as holdings, sum(totaldeposit) as total_deposits, sum(totalwithdrew) as total_withdraws, count(*) as total_users
-		FROM phpbb_bank";
+		FROM " . BANK_TABLE;
 	if ( !($result = $db->sql_query($sql)) ) 
 	{ 
 		message_die(GENERAL_MESSAGE, 'Fatal Error Getting Total Users!'); 

@@ -61,7 +61,7 @@ include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 
 // 得到该论坛的专题总数
 $sql = "SELECT topic_id, forum_id, topic_title, topic_special 
-	FROM phpbb_topics 
+	FROM " . TOPICS_TABLE . " 
 	WHERE topic_special = $special_id 
 		AND forum_id = $forum_id";
 
@@ -73,7 +73,7 @@ $t_specials_topics = $db->sql_numrows($result);
 
 // 查询xx论坛的专题
 $sql = "SELECT topic_id, forum_id, topic_title, topic_special 
-	FROM phpbb_topics 
+	FROM " . TOPICS_TABLE . " 
 	WHERE topic_special =  $special_id 
 		AND forum_id = $forum_id 
 	LIMIT $start, " . $board_config['posts_per_page'];
@@ -121,7 +121,7 @@ else
 }
 // 用来取得返回论坛的名称
 $sql = "SELECT forum_id, forum_name 
-	FROM phpbb_forums 
+	FROM " . FORUMS_TABLE . " 
 	WHERE forum_id = " . $forum_id;
 
 if ( !($result = $db->sql_query($sql)) )
@@ -136,7 +136,7 @@ if ( !($forum_data = $db->sql_fetchrow($result)) )
 
 // 用来取得返回专题的名称
 $sql = "SELECT * 
-	FROM phpbb_specials 
+	FROM " . $table_prefix . "specials 
 	WHERE special_forum = " . $forum_id;
 
 if ( !($result = $db->sql_query($sql)) )

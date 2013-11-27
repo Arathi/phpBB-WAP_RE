@@ -1003,7 +1003,7 @@ if ( !($topic_special = $db->sql_fetchrow($result)) )
 $default_special = $topic_special['topic_special'];
 
 $sql = "SELECT special_name
-	FROM phpbb_specials 
+	FROM " . SPECIAL_TABLE . " 
 	WHERE special_id = $default_special";
 if ( !($result = $db->sql_query($sql)) )
 {

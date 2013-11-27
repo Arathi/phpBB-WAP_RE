@@ -119,24 +119,24 @@ if ( $userdata['session_logged_in'] )
                 if ($thimble == $rand_thimble)
 				{
                    
-				$sql = "UPDATE phpbb_users SET user_points = user_points+500 WHERE user_id=".$userdata['user_id'];
+				$sql = "UPDATE " . USERS_TABLE . " SET user_points = user_points+500 WHERE user_id=".$userdata['user_id'];
 				if ( !($result = $db->sql_query($sql)) )
 				{
 					message_die(GENERAL_ERROR, 'Could not update users table');
 				}
 		
                     echo '<div class="row1">恭喜你，你挖到了500红豆！</div>';
-                } else 
-				{
-                   $sql = "UPDATE phpbb_users SET user_points = user_points-50 WHERE user_id=".$userdata['user_id'];
-				if ( !($result = $db->sql_query($sql)) )
-				{
-					message_die(GENERAL_ERROR, 'Could not update users table');
-				}
+                }
+                else {
+                    $sql = "UPDATE " . USERS_TABLE . " SET user_points = user_points-50 WHERE user_id=".$userdata['user_id'];
+                    if ( !($result = $db->sql_query($sql)) )
+                    {
+                        message_die(GENERAL_ERROR, 'Could not update users table');
+                    }
                     echo '<div class="row1">唉，什么也没挖到</div>';
                 } 
-            } else {
-			
+            } 
+            else {
 				message_die(GENERAL_MESSEGE, '您必须选择一块土地');              
 			} 
 

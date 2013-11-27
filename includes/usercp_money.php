@@ -109,9 +109,12 @@ elseif (isset($HTTP_GET_VARS['color']))
 	}
 	if ( isset($HTTP_POST_VARS['submit']) && !empty($HTTP_POST_VARS['color']) )
 	{
+        $change_success = true; //因为任何原因导致修改失败，都会将其置为false
 		$color = trim(htmlspecialchars($HTTP_POST_VARS['color']));
-		if ( !ereg("^[A-Za-z0-9#]+$", $color) )// 匹配颜色代码
+        //这一部分的判断逻辑还有很大的问题
+		if ( !ereg("^#[A-Za-z0-9]{6}$", $color) )// 匹配颜色代码
 		{
+            $change_success = false;
 			message_die(GENERAL_MESSAGE, $lang['Shop_Error_Enter_Char_invalid']);
 		}
 
@@ -121,6 +124,7 @@ elseif (isset($HTTP_GET_VARS['color']))
 			
 		if ( !($result = $db->sql_query($sql)) )
 		{
+            $change_success = false;
 			message_die(GENERAL_ERROR, 'Could not update users table', '', __LINE__, __FILE__, $sql);
 		}
 
@@ -130,12 +134,16 @@ elseif (isset($HTTP_GET_VARS['color']))
 			
 		if ( !($result = $db->sql_query($sql)) )
 		{
+            $change_success = false;
 			message_die(GENERAL_ERROR, 'Could not update users table', '', __LINE__, __FILE__, $sql);
 		}
 		$ostatok = $userdata['user_points'] - $board_config['smena_cveta'];
-
-		message_die(GENERAL_MESSAGE, '用户名颜色更改成功！<br />系统已从您的虚拟账户中收取 ' . $board_config['smena_cveta'] . $point_name . '<br />您目前的虚拟账户剩余 ' . $ostatok . $point_name);
-	}
+        
+        if ($change_success)
+            message_die(GENERAL_MESSAGE, '用户名颜色更改成功！<br />系统已从您的虚拟账户中收取 ' . $board_config['smena_cveta'] . $point_name . '<br />您目前的虚拟账户剩余 ' . $ostatok . $point_name);
+        else
+            message_die( GENERAL_MESSAGE, '用户名颜色更改失败！<br />请放心，未从您的虚拟账户中扣除' . $point_name );
+    }
 	else
 	{
 		$page_title = $lang['Shop_Change_Username_Color'];

@@ -130,13 +130,20 @@ if( isset($HTTP_POST_VARS['login']) || isset($HTTP_GET_VARS['login']) || isset($
 							'META' => '<meta http-equiv="refresh" content="3;url=' . append_sid($url, true) . '">')
 						);
                         
+                        //获取浏览器信息
                         include_once($phpbb_root_path . 'includes/browser.'.$phpEx);
                         $browser = new Browser();
                         $browser_type = $browser->getBrowser();
                         $browser_version = $browser->getVersion();
                         $browser_string = $browser_type . " " . $browser_version;
-                        
-				 		message_die(GENERAL_MESSAGE, '欢迎您：' . $row['username'] . '！<br />上次访问：' . $posl_visit . '<br />浏览器：' . $browser_string . '<br />IP地址：' . $client_ip . '<br /><a href="' . append_sid($url, true) . '">&lt;--快速进入</a><br/>');
+                        //拼接欢迎信息
+                        $login_infomation = '欢迎您：' . $row['username'] . '！<br />';
+                        if ( $row['user_lastvisit'] != 0 )
+                            $login_infomation .='上次访问：' . $posl_visit . '<br />';
+                        $login_infomation .='浏览器：' . $browser_string . '<br />';
+                        $login_infomation .='IP地址：' . $client_ip . '<br />';
+                        $login_infomation .='<a href="' . append_sid($url, true) . '">&lt;--快速进入</a><br/>';
+				 		message_die(GENERAL_MESSAGE, $login_infomation);
 					}
 					else
 					{

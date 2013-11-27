@@ -58,7 +58,7 @@ $page_title = $lang['Search'];
 include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 
 $sql = "SELECT topic_title 
-	FROM  phpbb_topics 
+	FROM " . TOPICS_TABLE . " 
 	WHERE forum_id = $forum_id 
 		AND topic_title 
 	LIKE '%$search_keywords%'";
@@ -69,7 +69,7 @@ if ( !($result = $db->sql_query($sql)) )
 $total_search_topic = $db->sql_numrows($result);
 
 $sql = "SELECT topic_id, topic_title  
-	FROM  phpbb_topics 
+	FROM " . TOPICS_TABLE . " 
 	WHERE forum_id = $forum_id
 		AND topic_title LIKE '%$search_keywords%' 
 	LIMIT $start, " . $board_config['topics_per_page'];
@@ -99,7 +99,7 @@ for ($i = 0; $i < $total_export_topic; $i++)
 }
 
 $sql = "SELECT forum_id, forum_name 
-	FROM phpbb_forums 
+	FROM " . FORUMS_TABLE . " 
 	WHERE forum_id = " . $forum_id;
 
 if ( !($result = $db->sql_query($sql)) )

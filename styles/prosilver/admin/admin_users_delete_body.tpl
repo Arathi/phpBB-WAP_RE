@@ -1,5 +1,5 @@
 <div class="navbar"><a href="{U_INDEX}">{L_INDEX}</a>&gt;<a href="{U_ADMIN}">{L_ADMIN}</a>&gt;<a href="{U_ADMIN_INDEX}">{L_ADMIN_INDEX}</a>&gt;删除会员</div>
-<span class="genmed">在这里，您可以皮脸删除会员，本站共有注册会员 {TOTAL_USERS} 人！</span>
+<span class="genmed">在这里，您可以批量删除会员，本站共有注册会员 {TOTAL_USERS} 人！</span>
 <form action="{U_LIST_ACTION}" method="post">
 	{L_SELECT_SORT_METHOD}：
 	<select name="sort">

@@ -181,7 +181,7 @@ INSERT INTO phpbb_user_group (group_id, user_id, user_pending) VALUES (2, 1, 0);
 INSERT INTO phpbb_topics (topic_id, topic_title, topic_poster, topic_time, topic_views, topic_replies, forum_id, topic_status, topic_type, topic_vote, topic_first_post_id, topic_last_post_id) VALUES (1, '欢迎使用phpBB-WAP！', 1, '0', 0, 0, 1, 0, 0, 0, 1, 1);
 
 #-- 帖子
-INSERT INTO phpbb_posts (post_id, topic_id, forum_id, poster_id, post_time, post_username, poster_ip) VALUES (1, 1, 1, 1, 0, NULL, '7F000001');
+INSERT INTO phpbb_posts (post_id, topic_id, forum_id, poster_id, post_time, post_username, poster_ip) VALUES (1, 1, 1, 1, UNIX_TIMESTAMP(now()), NULL, '7F000001');
 INSERT INTO phpbb_posts_text (post_id, post_subject, post_text) VALUES (1, NULL, '您好！这是一个测试的帖子，当你看到这个帖子时说明程序已经安装成功！假如您不喜欢这个帖子，您可以删除、移动或修改这个帖子。感谢您使用phpBB-WAP！');
 
 #-- 表情
@@ -436,6 +436,7 @@ INSERT INTO phpbb_profile_guestbook VALUES (1, 1, 1, 'dd7850a9d8', 1119444611, '
 #-- 风格
 INSERT INTO phpbb_styles (style_id, style_name, style_path) VALUES (1, '默认风格', 'prosilver');
 INSERT INTO phpbb_styles (style_id, style_name, style_path) VALUES (2, '新春风格', 'NewYear');
+INSERT INTO phpbb_styles (style_id, style_name, style_path) VALUES (3, '万圣节风格', 'Halloween');
 
 #-- 自定义网页排版
 INSERT INTO phpbb_pages (page_id, page_title, page_contents) VALUES (1, '网页标题', '网页内容');
@@ -470,7 +471,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('lottery_random_sho
 #-- 银行
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankinterest', '2');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankfees', '2');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankpayouttime', '84600');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankpayouttime', '86400');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankname', '虚拟银行');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankopened', 'off');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('bankholdings', '0');

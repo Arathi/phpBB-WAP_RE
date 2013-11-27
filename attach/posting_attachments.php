@@ -1029,23 +1029,23 @@ class attach_parent
                 $uploadErrorCode=$HTTP_POST_FILES['fileupload']['error'];
                 if ($uploadErrorCode==1)
                 {
-                    message_die(GENERAL_ERROR, '上传文件大小超过服务器最大文件限制');
+                    message_die(GENERAL_ERROR, $lang['upload_error_filesize_limit']);
                 }
                 else if ($uploadErrorCode==2)
                 {
-                    message_die(GENERAL_ERROR, '上传文件大小超过当前级别限制');
+                    message_die(GENERAL_ERROR, $lang['upload_error_formpost_limit']);
                 }
                 else if ($uploadErrorCode==3)
                 {
-                    message_die(GENERAL_ERROR, '该文件只有部分被上传');
+                    message_die(GENERAL_ERROR, $lang['upload_error_part']);
                 }
                 else if ($uploadErrorCode==4)
                 {
-                    message_die(GENERAL_ERROR, '改文件未被上传');
+                    message_die(GENERAL_ERROR, $lang['upload_error_nofile']);
                 }
                 else if ($uploadErrorCode>=5)
                 {
-                    message_die(GENERAL_ERROR, '文件上传时发生未知错误');
+                    message_die(GENERAL_ERROR, $lang['upload_error_unknown']);
                 }
             }
 
