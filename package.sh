@@ -9,9 +9,10 @@ DEST=`pwd`'/'$TARGET
 
 #准备待打包文件
 rm -rf $DEST
-cp -r $SRC $DEST
+cp -vr $SRC $DEST
 cd $DEST
-rm -rf phpBBwap.zip .git .settings .buildpath .gitignore .project package.bat package.sh README.txt phpBBwap.tar.gz
+rm -vrf .git .settings .buildpath .gitignore .project package.sh README.txt docs
 
 cd ..
-tar czvf $TARGET'.tar.gz' $TARGET
+7z a -tzip $TARGET'.zip' $TARGET
+#tar czvf $TARGET'.tar.gz' $TARGET
