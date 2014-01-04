@@ -271,15 +271,22 @@ $topic_time = $forum_topic_data['topic_time'];
 
 if ( $forum_topic_data['topic_closed'] > 0 )
 {
-	if ( $forum_topic_data['topic_closed'] == $forum_topic_data['topic_poster'] )
-	{
-		$topic_closed = '线程关闭<a href="' . append_sid("profile.$phpEx?mode=viewprofile&amp;" . POST_USERS_URL . '='  . $forum_topic_data['topic_closed']) . '">作者</a><br/>';
-	}
-	else
-	{
-		$user_closed = get_userdata($forum_topic_data['topic_closed']);
-		$topic_closed = '线程关闭 <a href="' . append_sid("profile.$phpEx?mode=viewprofile&amp;" . POST_USERS_URL . '='  . $forum_topic_data['topic_closed']) . '">' . $user_closed['username'] . '</a><br/>';
-	}
+    // 关闭或者解锁
+    if ( $forum_topic_data['topic_status']==TOPIC_LOCKED ) $forum_topic_status = '锁定';
+    elseif ( $forum_topic_data['topic_status']==TOPIC_UNLOCKED ) $forum_topic_status = '解锁';
+    else unset($forum_topic_status);
+    if ( isset($forum_topic_status) )
+    {
+        if ( $forum_topic_data['topic_closed'] == $forum_topic_data['topic_poster'] )
+        {
+            $topic_closed = '该主题已被'.'<a href="' . append_sid("profile.$phpEx?mode=viewprofile&amp;" . POST_USERS_URL . '='  . $forum_topic_data['topic_closed']) . '">楼主</a>'.$forum_topic_status.'！<br/>';
+        }
+        else
+        {
+            $user_closed = get_userdata($forum_topic_data['topic_closed']);
+            $topic_closed = '该主题已被'.'<a href="' . append_sid("profile.$phpEx?mode=viewprofile&amp;" . POST_USERS_URL . '='  . $forum_topic_data['topic_closed']) . '">' . $user_closed['username'] . '</a>'.$forum_topic_status.'！<br/>';
+        }
+    }
 }
 else
 {
