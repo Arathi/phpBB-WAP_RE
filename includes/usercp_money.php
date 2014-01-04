@@ -847,25 +847,15 @@ else
 			message_die(GENERAL_ERROR, 'Could not update users table', '', __LINE__, __FILE__, $sql);
 		}
 
-		if ( $userdata['user_level'] != ADMIN )
-		{
-			$sql = "UPDATE " . USERS_TABLE . "
-				SET user_points = user_points - $money
-				WHERE user_id = " . $userdata['user_id'];
-			if ( !($result = $db->sql_query($sql)) )
-			{
-				message_die(GENERAL_ERROR, 'Could not update users table', '', __LINE__, __FILE__, $sql);
-			}
-		}
-
-		if ( $userdata['user_level'] == ADMIN )
-		{
-			message_die(GENERAL_MESSAGE, '用户账户 ' . $username . ' 有 ' . $money . $point_name);
-		} 
-		else 
-		{
-			message_die(GENERAL_MESSAGE, '已转给' . $username . $money . $point_name);
-		}
+        //去除管理员不扣钱的设定，去掉管理员的特殊提示
+        $sql = "UPDATE " . USERS_TABLE . "
+            SET user_points = user_points - $money
+            WHERE user_id = " . $userdata['user_id'];
+        if ( !($result = $db->sql_query($sql)) )
+        {
+            message_die(GENERAL_ERROR, 'Could not update users table', '', __LINE__, __FILE__, $sql);
+        }
+		message_die(GENERAL_MESSAGE, '已转给' . $username . $money . $point_name);
 	}
 	else
 	{
