@@ -20,7 +20,7 @@ $template->set_filenames(array(
 );
 
 $template->assign_vars(array(
-	'PHPBB_VERSION' 	=> ($userdata['user_level'] == ADMIN && $userdata['user_id'] != ANONYMOUS) ? 'v' . $board_config['version'] : '')
+	'PHPBB_VERSION' 	=> ($userdata['user_level'] == ADMIN && $userdata['user_id'] != ANONYMOUS) ? '' . $board_config['version'] : '')
 );
 
 $template->pparse('page_footer');

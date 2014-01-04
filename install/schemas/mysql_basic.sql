@@ -65,7 +65,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('record_online_date
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('server_name', 'localhost');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('server_port', '80');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('script_path', '/');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('version', '4.0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('version', 'REv2');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('rand_seed', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_enabled', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('reputation_enabled', '1');
