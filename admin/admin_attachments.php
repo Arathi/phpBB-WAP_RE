@@ -984,7 +984,7 @@ if ($mode == 'sync')
 
 	echo $lang['Sync_topics'];
 	
-	$sql = "SELECT topic_id	FROM " . TOPICS_TABLE;
+	$sql = "SELECT topic_id FROM " . TOPICS_TABLE;
 	if (!($result = $db->sql_query($sql)))
 	{
 		message_die(GENERAL_ERROR, 'Could not get topic ID', '', __LINE__, __FILE__, $sql);
