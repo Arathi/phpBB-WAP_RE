@@ -279,7 +279,8 @@ if ( $forum_topic_data['topic_closed'] > 0 )
     {
         if ( $forum_topic_data['topic_closed'] == $forum_topic_data['topic_poster'] )
         {
-            $topic_closed = '该主题已被'.'<a href="' . append_sid("profile.$phpEx?mode=viewprofile&amp;" . POST_USERS_URL . '='  . $forum_topic_data['topic_closed']) . '">楼主</a>'.$forum_topic_status.'！<br/>';
+            $user_topic_poster = get_userdata( $forum_topic_data['topic_poster'] );
+            $topic_closed = '该主题已被楼主'.'<a href="' . append_sid("profile.$phpEx?mode=viewprofile&amp;" . POST_USERS_URL . '='  . $forum_topic_data['topic_closed']) . '">' . $user_topic_poster['username'] . '</a>'.$forum_topic_status.'！<br/>';
         }
         else
         {
