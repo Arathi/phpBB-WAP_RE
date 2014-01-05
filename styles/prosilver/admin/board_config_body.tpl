@@ -160,6 +160,9 @@
 <input type="radio" name="birthday_check_day" value="1" {BIRTHDAY_LOOK_YES} /> {L_YES}<br/>
 <input type="radio" name="birthday_check_day" value="0" {BIRTHDAY_LOOK_NO} /> {L_NO}
 </div>
+<div class="row1">下一个新用户的ID:<br/>
+<input type="text" size="4" maxlength="4" name="next_new_user_id" value="0" />
+</div>
 <div class="catSides">
 {L_COOKIE_SETTINGS}
 </div>

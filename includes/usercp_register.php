@@ -412,6 +412,7 @@ if ( isset($HTTP_POST_VARS['submit']) )
 		}
 		else
 		{
+            //此处不应该叫total，因为获取到的是最大的user_id编号，不是用户总数量
 			$sql = "SELECT MAX(user_id) AS total
 				FROM " . USERS_TABLE;
 			if ( !($result = $db->sql_query($sql)) )
@@ -423,7 +424,11 @@ if ( isset($HTTP_POST_VARS['submit']) )
 			{
 				message_die(GENERAL_ERROR, 'Could not obtain next user_id information', '', __LINE__, __FILE__, $sql);
 			}
+            
+            //获取下一个user_id
+            $next_new_user_id = isset($board_config['next_new_user_id']) ? $board_config['next_new_user_id'] : 0;
 			$user_id = $row['total'] + 1;
+            if ( $user_id < $next_new_user_id ) $user_id = $next_new_user_id;
 
 			$board_timezone = $board_config['board_timezone'];
 			$default_dateformat = $board_config['default_dateformat'];

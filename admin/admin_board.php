@@ -171,8 +171,6 @@ $avatars_upload_no 	= ( !$new['allow_avatar_upload'] ) ? "checked=\"checked\"" :
 $smtp_yes 			= ( $new['smtp_delivery'] ) ? "checked=\"checked\"" : "";
 $smtp_no 			= ( !$new['smtp_delivery'] ) ? "checked=\"checked\"" : "";
 
-
-
 $report_email_yes 	= ( $new['report_email'] ) ? 'checked="checked"' : '';
 $report_email_no 	= ( !$new['report_email'] ) ? 'checked="checked"' : '';
 

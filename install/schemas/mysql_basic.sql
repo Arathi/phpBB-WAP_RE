@@ -151,6 +151,8 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('allow_guests_gb', 
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('gb_posts', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('gb_quick', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('prune_shouts', '0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('next_new_user_id', '1');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('admin_user_id', '1');
 
 #-- 奖
 INSERT INTO phpbb_medal_cat VALUES ('1', '测试奖', '10');
