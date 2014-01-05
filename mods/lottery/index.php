@@ -380,7 +380,7 @@ function cash_pm(&$targetdata,$privmsg_subject,&$message)
    		$message = sprintf($lang['lottery_pm_message'], $pool); 
 
    		$temp_data = $userdata; 
-		$userdata = get_userdata(2); 
+		$userdata = get_userdata(1); 
 		cash_pm($row2,$privmsg_subject,$message); 
 		$userdata = $temp_data;
 	}
