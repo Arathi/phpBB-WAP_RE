@@ -70,3 +70,4 @@ DROP TABLE IF EXISTS `phpbb_bank`;
 DROP TABLE IF EXISTS `phpbb_invite`;
 DROP TABLE IF EXISTS `phpbb_deliver`;
 DROP TABLE IF EXISTS `phpbb_partake_deliver`;
+DROP TABLE IF EXISTS `phpbb_salesroom_goods`;

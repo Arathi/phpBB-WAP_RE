@@ -1039,3 +1039,17 @@ CREATE TABLE IF NOT EXISTS phpbb_partake_deliver (
   deliver_id mediumint(8) NOT NULL default '0',
   PRIMARY KEY (partake_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE  IF NOT EXISTS `phpbb_salesroom_goods` (
+  `goods_id` int(8) NOT NULL COMMENT '商品编号',
+  `goods_name` varchar(32) DEFAULT NULL COMMENT '商品名称',
+  `start_time` int(11) DEFAULT NULL COMMENT '拍卖开始时间',
+  `end_time` int(11) DEFAULT NULL COMMENT '拍卖结束时间',
+  `min_price` int(11) DEFAULT NULL COMMENT '起始价格',
+  `step_money` int(11) DEFAULT NULL COMMENT '最小加价',
+  `max_price` int(11) DEFAULT NULL COMMENT '一口价',
+  `description` text COMMENT '描述',
+  `verify_status` tinyint(4) DEFAULT NULL COMMENT '校验状态',
+  PRIMARY KEY (`goods_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+

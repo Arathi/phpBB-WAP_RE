@@ -15,11 +15,11 @@ init_userprefs($userdata);
 // 验证用户是否登录
 if ( !$userdata['session_logged_in'] )
 {
-    redirect(append_sid("login.$phpEx?redirect=mods/mora/index.$phpEx", true));
+    redirect(append_sid("login.$phpEx?redirect=mods/salesroom/index.$phpEx", true));
     exit;
 }
 
-$sql =  "SELECT goods_id, goods_name, end_time FROM phpbb_salesroom_goods " . 
+$sql =  "SELECT goods_id, goods_name, end_time FROM phpbb_salesroom_goods " . //"";
         "WHERE unix_timestamp(now()) BETWEEN start_time AND end_time AND verify_status=1 ";
 
 if ( !$result = $db->sql_query($sql) )
@@ -36,18 +36,26 @@ while ($row = $db->sql_fetchrow($result))
 
 $total_goods_rows = count($goods_rows);
 
-for($i = 0; $i < $total_goods_rows; $i++)
+if ($total_goods_rows > 0)
 {
-	$number = $i + 1 + $start;
-	$row_class = ( !($i % 2) ) ? 'row_easy' : 'row_hard';
-	$template->assign_block_vars('goods_rows', array(
-		'NUMBER'				=> $goods_rows[$i]['goods_id'],
-		'ROW_CLASS' 			=> $row_class,
-		'GOODS_NAME' 		=> $goods_rows[$i]['goods_name'],
-		'U_GOODS_INFO' 	=> append_sid("{$phpbb_root_path}profile.php?mode=viewprofile&u=" . $goods_rows[$i]['sign_user_id']),
-		'END_TIME' 			=> create_date($userdata['user_dateformat'], $goods_rows[$i]['end_time'], $board_config['board_timezone']),
-        )
-	);
+    $template->assign_block_vars( 'switch_has_goods', array() );
+    for($i = 0; $i < $total_goods_rows; $i++)
+    {
+        $number = $i + 1 + $start;
+        $row_class = ( !($i % 2) ) ? 'row_easy' : 'row_hard';
+        $template->assign_block_vars('goods_rows', array(
+            'NUMBER'				=> $goods_rows[$i]['goods_id'],
+            'ROW_CLASS' 			=> $row_class,
+            'GOODS_NAME' 		=> $goods_rows[$i]['goods_name'],
+            'U_GOODS_INFO' 	=> append_sid("goodsinfo.php?gid=" . $goods_rows[$i]['goods_id']),
+            'END_TIME' 			=> create_date($userdata['user_dateformat'], $goods_rows[$i]['end_time'], $board_config['board_timezone']),
+            )
+        );
+    }
+}
+else
+{
+    $template->assign_block_vars( 'switch_no_goods', array() );
 }
 
 // 页面头部
