@@ -15,17 +15,28 @@
 	</div>
 <!-- END goods_rows -->
 
+<!-- BEGIN message -->
+    <div class="row_hard">{message.MESSAGE_TEXT}</div>
+<!-- END goods_id_error -->
+
 <!-- BEGIN goods_info -->
     <div class="{goods_info.ROW_CLASS}">
-		<b>编号：</b>No.{goods_info.NUMBER}<br/>
-        <b>名称：</b>{goods_info.GOODS_NAME}<br/>
+        <b>商品编号：</b>No.{goods_info.NUMBER}<br/>
+        <b>商品名称：</b>{goods_info.GOODS_NAME}<br/>
         <b>拍卖开始时间：</b>{goods_info.START_TIME}<br/>
         <b>拍卖结束时间：</b>{goods_info.END_TIME}<br/>
         <b>当前价格：</b>{goods_info.GOODS_PRICE_NOW}<br/>
         <b>最小加价：</b>{goods_info.STEP_MONEY}<br/>
         <b>一口价：</b>{goods_info.GOODS_PRICE_MAX}<br/>
         <b>描述：</b><br/>{goods_info.GOODS_DESC}<br/>
-	</div>
+    </div>
 <!-- END goods_info -->
+
+<!-- BEGIN goods_bid -->
+    <form action='goodsinfo.php?gid={goods_bid.NUMBER}&action=bid' method='post'>
+        <input type='text' name='bid_money' value='0' />
+        <input type='submit' name='submit' value='出价' />
+    </form>
+<!-- END goods_bid -->
 
 {PAGINATION}
