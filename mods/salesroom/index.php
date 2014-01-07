@@ -19,7 +19,7 @@ if ( !$userdata['session_logged_in'] )
     exit;
 }
 
-$sql =  "SELECT goods_id, goods_name, end_time FROM phpbb_salesroom_goods " . //"";
+$sql =  "SELECT goods_id, goods_name, end_time FROM ".$table_prefix."salesroom_goods " .
         "WHERE unix_timestamp(now()) BETWEEN start_time AND end_time AND verify_status=1 ";
 
 if ( !$result = $db->sql_query($sql) )
@@ -69,7 +69,7 @@ $template->set_filenames(array(
 
 // 调用模版语言
 $template->assign_vars(array(
-
+    
 ));
 
 $template->pparse('body');
