@@ -1,5 +1,10 @@
 <?php
-
+/******************************
+ * 文件名称：admin_salesroom.php
+ * 版权所有：Arathi Software Foundation
+ * 文件说明：拍卖行设置
+ ******************************/
+ 
 if( !empty($setmodules) )
 {
 	$file = basename(__FILE__);
