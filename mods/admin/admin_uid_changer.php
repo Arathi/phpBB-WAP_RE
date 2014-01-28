@@ -44,7 +44,7 @@ else {
     $newuid = ''; 
 }
 
-if ( is_numeric($olduid) && $olduid>0 && is_numeric($newuid) && $newuid>0  )
+if ( is_numeric($olduid) && $olduid>1 && is_numeric($newuid) && $newuid>0 )
 {
     //执行修改ID的逻辑
     //先检查原ID是否存在
