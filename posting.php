@@ -204,9 +204,10 @@ if ( ($result = $db->sql_query($sql)) && ($post_info = $db->sql_fetchrow($result
 	{ 
 	   message_die(GENERAL_MESSAGE, $lang['Forum_locked']); 
 	} 
-	else if ( $mode != 'newtopic' && $post_info['topic_status'] == TOPIC_LOCKED && !$is_auth_mod) 
-	{ 
-	   message_die(GENERAL_MESSAGE, $lang['Topic_locked']); 
+	else if ( $mode != 'newtopic' && $post_info['topic_status'] == TOPIC_LOCKED) // && !$is_auth_mod 
+	{
+        //管理员也不能越权回复被锁的主题
+	    message_die(GENERAL_MESSAGE, $lang['Topic_locked']); 
 	} 
 
 	if ( $mode == 'editpost' || $mode == 'delete' || $mode == 'poll_delete' )

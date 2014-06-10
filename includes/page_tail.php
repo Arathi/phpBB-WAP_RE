@@ -22,6 +22,7 @@ $template->set_filenames(array(
 );
 
 $template->assign_vars(array(
+    'PHPBB_VERSION' => $board_config['version'],
 	'ADVERTISMENT_FOOT' => $advertisment_foot)
 );
 

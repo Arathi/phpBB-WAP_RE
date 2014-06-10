@@ -54,7 +54,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('avatar_gallery_pat
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('smilies_path','images/smiles');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_style','1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('default_dateformat','d M, G:i');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('board_timezone','4');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('board_timezone','8');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('prune_enable','1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('privmsg_disable','0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('gzip_compress','0');
@@ -65,7 +65,7 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('record_online_date
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('server_name', 'localhost');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('server_port', '80');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('script_path', '/');
-INSERT INTO phpbb_config (config_name, config_value) VALUES ('version', '4.0');
+INSERT INTO phpbb_config (config_name, config_value) VALUES ('version', 'v4.0.5');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('rand_seed', '0');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('warnings_enabled', '1');
 INSERT INTO phpbb_config (config_name, config_value) VALUES ('reputation_enabled', '1');
@@ -482,3 +482,5 @@ INSERT INTO phpbb_config (config_name, config_value) VALUES ('bank_interestcut',
 
 #-- 友情链接
 INSERT INTO phpbb_linkexchange VALUES ('0', '爱疯的云', 'support@phpbb-wap.com', '中文phpBB-WAP', 'http://phpbb-wap.com/images/logo.png', '中文phpBB-WAP', 'phpbb-wap.com', '0', '0', '0');
+INSERT INTO phpbb_linkexchange VALUES ('1', 'Arathi', 'admin@arathi.pw', 'Arathis壁垒', 'http://arathi.pw/favicon.ico', 'Arathis壁垒', 'arathi.pw', '0', '0', '0');
+

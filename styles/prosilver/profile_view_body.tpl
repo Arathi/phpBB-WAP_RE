@@ -63,8 +63,8 @@
 </div>
 <!-- BEGIN pay_money -->
 	<div class="row1">
-		Денег на счету: <b>{MONEY_EARNED}</b> руб<br/>
-		Всего выплачено: <b>{MONEY_PAYMENT}</b> руб
+		已赚取：<b>{MONEY_EARNED}</b> руб<br/>
+		已充值：<b>{MONEY_PAYMENT}</b> руб
 	</div>
 <!-- END pay_money -->
 <!-- BEGIN reputation -->
